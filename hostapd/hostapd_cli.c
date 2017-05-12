@@ -1281,6 +1281,11 @@ static int hostapd_cli_cmd_pmksa_flush(struct wpa_ctrl *ctrl, int argc,
 	return wpa_ctrl_command(ctrl, "PMKSA_FLUSH");
 }
 
+static void helloworld(void)
+{
+ printf("Hell! O' world, why won't my code compile?\n\n");
+ return 0;
+}
 
 static int hostapd_cli_cmd_set_neighbor(struct wpa_ctrl *ctrl, int argc,
 					char *argv[])
@@ -1499,6 +1504,8 @@ static const struct hostapd_cli_cmd hostapd_cli_commands[] = {
 	  " = send FTM range request"},
 	{ "driver_flags", hostapd_cli_cmd_driver_flags, NULL,
 	  " = show supported driver flags"},
+	{ "helloworld", helloworld, NULL,
+	  " = escribe mensaje holamundo"},
 	{ NULL, NULL, NULL, NULL }
 };
 
