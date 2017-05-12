@@ -2598,7 +2598,7 @@ static int hostapd_ctrl_iface_receive_process(struct hostapd_data *hapd,
 			hapd, reply, reply_size);
 #endif /* NEED_AP_MLME */
 	} else if (os_strcmp(buf, "PMKSA") == 0) {
-		reply_len = hostapd_ctrl_iface_pmksa_list_mesh(hapd, NULL,
+		reply_len = hostapd_ctrl_iface_pmksa_list_mesh(hapd, NULL, buf,
 							  reply_size);
 	} else if (os_strcmp(buf, "PMKSA_FLUSH") == 0) {
 		hostapd_ctrl_iface_pmksa_flush(hapd);
