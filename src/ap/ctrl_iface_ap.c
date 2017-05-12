@@ -641,15 +641,14 @@ void hostapd_ctrl_iface_pmksa_flush(struct hostapd_data *hapd)
 }
 
 
-#ifdef CONFIG_PMKSA_CACHE_EXTERNAL
-#ifdef CONFIG_MESH
-
 int hostapd_ctrl_iface_pmksa_list_mesh(struct hostapd_data *hapd,
 				       const u8 *addr, char *buf, size_t len)
 {
 	return wpa_auth_pmksa_list_mesh(hapd->wpa_auth, addr, buf, len);
 }
 
+#ifdef CONFIG_PMKSA_CACHE_EXTERNAL
+#ifdef CONFIG_MESH
 
 void * hostapd_ctrl_iface_pmksa_create_entry(const u8 *aa, char *cmd)
 {
