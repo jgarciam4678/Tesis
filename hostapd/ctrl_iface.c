@@ -2600,9 +2600,9 @@ static int hostapd_ctrl_iface_receive_process(struct hostapd_data *hapd,
 	} else if (os_strcmp(buf, "PMKSA") == 0) {
 		reply_len = hostapd_ctrl_iface_pmksa_list_mesh(hapd, NULL, reply,
 							  reply_size);
-	if (os_strcmp(buf, "HELLOWORLD") == 0) {
-		os_memcpy(reply, "Hell! O' world, why won't my code compile?\n\n", 46);
-		reply_len = 46;	
+#	if (os_strcmp(buf, "HELLOWORLD") == 0) {
+#		os_memcpy(reply, "Hell! O' world, why won't my code compile?\n\n", 46);
+#		reply_len = 46;	
 	} else if (os_strcmp(buf, "PMKSA_FLUSH") == 0) {
 		hostapd_ctrl_iface_pmksa_flush(hapd);
 	} else if (os_strncmp(buf, "SET_NEIGHBOR ", 13) == 0) {
