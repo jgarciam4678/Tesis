@@ -1497,7 +1497,7 @@ static const struct hostapd_cli_cmd hostapd_cli_commands[] = {
 	{ "pmksa", hostapd_cli_cmd_pmksa, NULL,
 	  " = show PMKSA cache entries" },
 	{ "pmksa_list", hostapd_cli_cmd_pmksa_list, NULL,
-	  " = show PMKID & PMK cache entries in MESH mode" },
+	  " = show PMKID & PMK cache entries \n BSSID / PMKID / PMK / expiration (in seconds)\n},
 	{ "pmksa_flush", hostapd_cli_cmd_pmksa_flush, NULL,
 	  " = flush PMKSA cache" },
 	{ "set_neighbor", hostapd_cli_cmd_set_neighbor, NULL,
