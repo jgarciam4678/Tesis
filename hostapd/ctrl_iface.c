@@ -2598,10 +2598,10 @@ static int hostapd_ctrl_iface_receive_process(struct hostapd_data *hapd,
 			hapd, reply, reply_size);
 #endif /* NEED_AP_MLME */
 	} else if (os_strcmp(buf, "PMKSA") == 0) {
-		reply_len = hostapd_ctrl_iface_pmksa(hapd, reply,
+		reply_len = hostapd_ctrl_iface_pmksa_list(hapd, reply,
 							  reply_size);
 	} else if (os_strcmp(buf, "PMKSA_LIST") == 0) {
-		reply_len = hostapd_ctrl_iface_pmksa_list(hapd, NULL, reply,
+		reply_len = hostapd_ctrl_iface_pmksa_list_mesh(hapd, NULL, reply,
 						  reply_size);
 	} else if (os_strcmp(buf, "HELLOWORLD") == 0) { 
 		os_memcpy(reply, "Hell! O' world, why won't my code compile?\n\n", 46); 
