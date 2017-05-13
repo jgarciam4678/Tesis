@@ -2637,7 +2637,7 @@ static int hostapd_ctrl_iface_receive_process(struct hostapd_data *hapd,
 	return reply_len;
 }
 
-static void helloworld(void)
+static void HELLOWORLD(void NULL)
 {
 	
 #	return wpa_ctrl_command(ctrl, "helloworld");
