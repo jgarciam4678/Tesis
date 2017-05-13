@@ -691,8 +691,6 @@ int pmksa_cache_auth_list_mesh(struct rsn_pmksa_cache *pmksa, const u8 *addr,
 	 * Entry format:
 	 * <BSSID> <PMKID> <PMK> <expiration in seconds>
 	 */
-	ret = os_snprintf(pos, buf + len - pos,
-			  "BSSID / PMKID / PMK / expiration (in seconds)\n");
 	
 	for (entry = pmksa->pmksa; entry; entry = entry->next) {
 		if (addr && os_memcmp(entry->spa, addr, ETH_ALEN) != 0)
