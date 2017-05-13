@@ -1274,6 +1274,10 @@ static int hostapd_cli_cmd_pmksa(struct wpa_ctrl *ctrl, int argc, char *argv[])
 	return wpa_ctrl_command(ctrl, "PMKSA");
 }
 
+static int hostapd_cli_cmd_pmksa_list(struct wpa_ctrl *ctrl, int argc, char *argv[])
+{
+	return wpa_ctrl_command(ctrl, "PMKSA_LIST");
+}
 
 static int hostapd_cli_cmd_pmksa_flush(struct wpa_ctrl *ctrl, int argc,
 				       char *argv[])
@@ -1490,7 +1494,9 @@ static const struct hostapd_cli_cmd hostapd_cli_commands[] = {
 	  "= drop all ERP keys"},
 	{ "log_level", hostapd_cli_cmd_log_level, NULL,
 	  "[level] = show/change log verbosity level" },
-	{ "pmksa", hostapd_cli_cmd_pmksa, NULL,
+	{ "pmksa_list", hostapd_cli_cmd_pmksa, NULL,
+	  " = show PMKID & PMK cache entries in MESH mode" },
+	{ "pmksa", hostapd_cli_cmd_pmksa_list, NULL,
 	  " = show PMKSA cache entries" },
 	{ "pmksa_flush", hostapd_cli_cmd_pmksa_flush, NULL,
 	  " = flush PMKSA cache" },
