@@ -2600,6 +2600,8 @@ static int hostapd_ctrl_iface_receive_process(struct hostapd_data *hapd,
 	} else if (os_strcmp(buf, "PMKSA") == 0) {
 		reply_len = hostapd_ctrl_iface_pmksa_list_mesh(hapd, NULL, reply,
 							  reply_size);
+	} else if (os_strcmp(buf, "helloworld") == 0) {
+		helloworld();
 	} else if (os_strcmp(buf, "PMKSA_FLUSH") == 0) {
 		hostapd_ctrl_iface_pmksa_flush(hapd);
 	} else if (os_strncmp(buf, "SET_NEIGHBOR ", 13) == 0) {
@@ -2633,6 +2635,14 @@ static int hostapd_ctrl_iface_receive_process(struct hostapd_data *hapd,
 	}
 
 	return reply_len;
+}
+
+static void helloworld(void)
+{
+	
+#	return wpa_ctrl_command(ctrl, "helloworld");
+	 printf("Hell! O' world, why won't my code compile?\n\n");
+	 return 0;
 }
 
 
