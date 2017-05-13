@@ -695,7 +695,7 @@ int pmksa_cache_auth_list_mesh(struct rsn_pmksa_cache *pmksa, const u8 *addr,
 			  "BSSID /  PMKID / PMK /expiration (in seconds) \n");
 	if (os_snprintf_error(buf + len - pos, ret))
 		return pos - buf;
-	pos += ret;
+	pos += ret;   		 /*¿perjudica al código?*/
 	
 	
 	for (entry = pmksa->pmksa; entry; entry = entry->next) {
