@@ -2601,7 +2601,7 @@ static int hostapd_ctrl_iface_receive_process(struct hostapd_data *hapd,
 		reply_len = hostapd_ctrl_iface_pmksa_list(hapd, reply,
 							  reply_size);
 	} else if (os_strcmp(buf, "PMKSA_LIST") == 0) {
-		os_memcpy(reply, "BSSID / PMKID / PMK / expiration (in seconds)\n", 47);
+		printf("BSSID / PMKID / PMK / expiration (in seconds)\n");
 		reply_len = hostapd_ctrl_iface_pmksa_list_mesh(hapd, NULL, reply,
 						  reply_size);
 	} else if (os_strcmp(buf, "HELLOWORLD") == 0) { 
