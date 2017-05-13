@@ -1281,12 +1281,12 @@ static int hostapd_cli_cmd_pmksa_flush(struct wpa_ctrl *ctrl, int argc,
 	return wpa_ctrl_command(ctrl, "PMKSA_FLUSH");
 }
 
-#static int helloworld(void)
-#{
-#	return wpa_ctrl_command(ctrl, "HELLOWORLD");
-#	 printf("Hell! O' world, why won't my code compile?\n\n");
-#	 return 0;
-#}
+static int helloworld(void)
+{
+	return wpa_ctrl_command(ctrl, "HELLOWORLD");
+	 printf("Hell! O' world, why won't my code compile?\n\n");
+	 return 0;
+}
 
 static int hostapd_cli_cmd_set_neighbor(struct wpa_ctrl *ctrl, int argc,
 					char *argv[])
