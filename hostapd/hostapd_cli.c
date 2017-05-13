@@ -1512,7 +1512,7 @@ static const struct hostapd_cli_cmd hostapd_cli_commands[] = {
 	{ "driver_flags", hostapd_cli_cmd_driver_flags, NULL,
 	  " = show supported driver flags"},
 	{ "helloworld", helloworld, NULL,
-	  " = show a helloworld message from the editor"},
+	  " = show a helloworld message from the programmer"},
 	{ NULL, NULL, NULL, NULL }
 };
 
