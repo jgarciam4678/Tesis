@@ -1281,7 +1281,7 @@ static int hostapd_cli_cmd_pmksa_flush(struct wpa_ctrl *ctrl, int argc,
 	return wpa_ctrl_command(ctrl, "PMKSA_FLUSH");
 }
 
-static int helloworld(void)
+static int helloworld(struct wpa_ctrl *ctrl, int argc, char *argv[])
 {
 	return wpa_ctrl_command(ctrl, "HELLOWORLD");
 	 printf("Hell! O' world, why won't my code compile?\n\n");
