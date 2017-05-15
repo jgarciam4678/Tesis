@@ -1340,7 +1340,7 @@ static int hostapd_cli_cmd_remove_neighbor(struct wpa_ctrl *ctrl, int argc,
 			  argv[0], argv[1]);
 	if (os_snprintf_error(sizeof(cmd), res)) {
 		printf("Too long REMOVE_NEIGHBOR command.\n");
-		return -1;hostapd_cli_cmd_pmksa_new_entry
+		return -1;
 	}
 	return wpa_ctrl_command(ctrl, cmd);
 }
