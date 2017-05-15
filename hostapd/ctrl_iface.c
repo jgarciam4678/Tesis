@@ -2368,8 +2368,8 @@ static int hostapd_ctrl_iface_pmksa_add(struct hostapd_supplicant *hpad,
 
 /*	ssid = wpa_config_get_network(wpa_s->conf, atoi(cmd));
 	if (!ssid)
-*/	return -1;
-
+	return -1;
+*/
 	pos = os_strchr(cmd, ' ');
 	if (!pos)
 		return -1;
