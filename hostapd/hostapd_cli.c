@@ -1279,6 +1279,20 @@ static int hostapd_cli_cmd_pmksa_list(struct wpa_ctrl *ctrl, int argc, char *arg
 	return wpa_ctrl_command(ctrl, "PMKSA_LIST");
 }
 
+static int hostapd_cli_cmd_pmksa_new_entry(struct wpa_ctrl *ctrl, int argc, char *argv[])
+{
+	char cmd[256];
+	int res;
+
+	if (argc != 2) {
+		printf("Invalid PMKSA_NEW_ENTRY command: needs two arguments (variable "
+		       "Suplicant Address and PMK)\n");
+		return -1;
+	}
+	
+	return wpa_ctrl_command(ctrl, cmd);
+}
+
 static int hostapd_cli_cmd_pmksa_flush(struct wpa_ctrl *ctrl, int argc,
 				       char *argv[])
 {
@@ -1498,6 +1512,8 @@ static const struct hostapd_cli_cmd hostapd_cli_commands[] = {
 	  " = show PMKSA cache entries" },
 	{ "pmksa_list", hostapd_cli_cmd_pmksa_list, NULL,
 	  " = show PMKID & PMK cache entries" },
+	{ "pmksa_entry", hostapd_cli_cmd_pmksa_list, NULL,
+	  "<SA> <PMK> = refresh PMKSA list with new STA info" },
 	{ "pmksa_flush", hostapd_cli_cmd_pmksa_flush, NULL,
 	  " = flush PMKSA cache" },
 	{ "set_neighbor", hostapd_cli_cmd_set_neighbor, NULL,
