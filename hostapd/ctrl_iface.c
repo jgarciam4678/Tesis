@@ -2493,7 +2493,7 @@ static int hostapd_ctrl_iface_receive_process(struct hostapd_data *hapd,
 #ifdef CONFIG_INTERWORKING
 	} else if (os_strncmp(buf, "SET_QOS_MAP_SET ", 16) == 0) {
 		if (hostapd_ctrl_iface_set_qos_map_set(hapd, buf + 16))
-			reply_len = -1;
+			reply_len = -1;hostapd_cli_cmd_pmksa_list
 	} else if (os_strncmp(buf, "SEND_QOS_MAP_CONF ", 18) == 0) {
 		if (hostapd_ctrl_iface_send_qos_map_conf(hapd, buf + 18))
 			reply_len = -1;
@@ -2603,6 +2603,9 @@ static int hostapd_ctrl_iface_receive_process(struct hostapd_data *hapd,
 	} else if (os_strcmp(buf, "PMKSA_LIST") == 0) {
 		reply_len = hostapd_ctrl_iface_pmksa_list_mesh(hapd, NULL, reply,
 						  reply_size);
+	} else if (os_strcmp(buf, "PMKSA_NEW_ENTRY ") == 0) {
+		reply_len = hostapd_ctrl_iface_pmksa_new_entry(hapd, buf + 16, reply,
+						   reply_size);	
 	} else if (os_strcmp(buf, "HELLOWORLD") == 0) { 
 		os_memcpy(reply, "Hell! O' world, why won't my code compile?\n\n", 46); 
 		reply_len = 46;	
