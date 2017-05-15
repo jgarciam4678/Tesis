@@ -1287,7 +1287,7 @@ static int hostapd_cli_cmd_pmksa_add(struct wpa_ctrl *ctrl, int argc, char *argv
 		return -1;
 	}
 	
-	return hostapd_cli_cmd(ctrl, "PMKSA_ADD", 8, argc, argv);
+	return hostapd_cli_cmd(ctrl, "PMKSA_ADD", 3, argc, argv);
 }
 	
 static int hostapd_cli_cmd_pmksa_flush(struct wpa_ctrl *ctrl, int argc,
@@ -1416,7 +1416,7 @@ static const struct hostapd_cli_cmd hostapd_cli_commands[] = {
 	  hostapd_complete_stations,
 	  "<addr> = disassociate a station" },
 #ifdef CONFIG_TAXONOMY
-	{ "signature", hostapd_cli_cmd_signature, hostapd_complete_stations,
+	{ "signature", hostapd_cli_cmd_signature, hostapd_complete_stations,pmksa
 	  "<addr> = get taxonomy signature for a station" },
 #endif /* CONFIG_TAXONOMY */
 #ifdef CONFIG_IEEE80211W
@@ -1510,7 +1510,7 @@ static const struct hostapd_cli_cmd hostapd_cli_commands[] = {
 	{ "pmksa_list", hostapd_cli_cmd_pmksa_list, NULL,
 	  " = show PMKID & PMK cache entries" },
 	{ "pmksa_add", hostapd_cli_cmd_pmksa_add, NULL,
-	  "<network_id> <BSSID> <PMKID> <PMK> <reauth_time in seconds> <expiration in seconds> <akmp> <opportunistic> = store PMKSA cache entry from external storage" },
+	  "<BSSID> <PMKID> <PMK> <expiration in seconds> = store PMKSA new cache entry" },
 	{ "pmksa_flush", hostapd_cli_cmd_pmksa_flush, NULL,
 	  " = flush PMKSA cache" },
 	{ "set_neighbor", hostapd_cli_cmd_set_neighbor, NULL,
