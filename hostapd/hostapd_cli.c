@@ -1343,7 +1343,7 @@ static int hostapd_cli_cmd_remove_neighbor(struct wpa_ctrl *ctrl, int argc,
 			  argv[0], argv[1]);
 	if (os_snprintf_error(sizeof(cmd), res)) {
 		printf("Too long REMOVE_NEIGHBOR command.\n");
-		return -1;
+		return -1;hostapd_cli_cmd_pmksa_new_entry
 	}
 	return wpa_ctrl_command(ctrl, cmd);
 }
@@ -1512,7 +1512,7 @@ static const struct hostapd_cli_cmd hostapd_cli_commands[] = {
 	  " = show PMKSA cache entries" },
 	{ "pmksa_list", hostapd_cli_cmd_pmksa_list, NULL,
 	  " = show PMKID & PMK cache entries" },
-	{ "pmksa_entry", hostapd_cli_cmd_pmksa_list, NULL,
+	{ "pmksa_new_entry", hostapd_cli_cmd_pmksa_new_entry, NULL,
 	  "<SA> <PMK> = refresh PMKSA list with new STA info" },
 	{ "pmksa_flush", hostapd_cli_cmd_pmksa_flush, NULL,
 	  " = flush PMKSA cache" },
