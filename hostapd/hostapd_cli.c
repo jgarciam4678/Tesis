@@ -1281,7 +1281,7 @@ static int hostapd_cli_cmd_pmksa_list(struct wpa_ctrl *ctrl, int argc, char *arg
 
 static int hostapd_cli_cmd_pmksa_add(struct wpa_ctrl *ctrl, int argc, char *argv[])
 {
-	return wpa_cli_cmd(ctrl, "PMKSA_ADD", 8, argc, argv);
+	return wpa_ctrl_command(ctrl, "PMKSA_ADD", 8, argc, argv);
 }
 	
 static int hostapd_cli_cmd_pmksa_flush(struct wpa_ctrl *ctrl, int argc,
