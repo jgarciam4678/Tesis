@@ -2353,7 +2353,7 @@ static int hostapd_ctrl_iface_pmksa_add(struct hostapd_supplicant *hpad,
 				     char *cmd)
 {
 	struct rsn_pmksa_cache_entry *entry;
-	struct wpa_ssid *ssid;
+	struct hpad_ssid *ssid;
 	char *pos, *pos2;
 	int ret = -1;
 	struct os_reltime now;
@@ -2361,14 +2361,14 @@ static int hostapd_ctrl_iface_pmksa_add(struct hostapd_supplicant *hpad,
 
 	/*
 	 * Entry format:
-	 * <network_id> <BSSID> <PMKID> <PMK> <reauth_time in seconds>
+	 * #<network_id>#		 <BSSID> <PMKID> <PMK> <reauth_time in seconds>
 	 * <expiration in seconds> <akmp> <opportunistic>
 	 * [FILS Cache Identifier]
 	 */
 
-	ssid = wpa_config_get_network(wpa_s->conf, atoi(cmd));
-	if (!ssid)
-		return -1;
+#	ssid = wpa_config_get_network(wpa_s->conf, atoi(cmd));
+#	if (!ssid)
+#		return -1;
 
 	pos = os_strchr(cmd, ' ');
 	if (!pos)
