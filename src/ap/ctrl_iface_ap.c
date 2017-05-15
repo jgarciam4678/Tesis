@@ -647,9 +647,6 @@ int hostapd_ctrl_iface_pmksa_list_mesh(struct hostapd_data *hapd,
 	return wpa_auth_pmksa_list_mesh(hapd->wpa_auth, addr, buf, len);
 }
 
-#ifdef CONFIG_PMKSA_CACHE_EXTERNAL
-#ifdef CONFIG_MESH
-
 void * hostapd_ctrl_iface_pmksa_create_entry(const u8 *aa, char *cmd)
 {
 	u8 spa[ETH_ALEN];
@@ -692,6 +689,9 @@ void * hostapd_ctrl_iface_pmksa_create_entry(const u8 *aa, char *cmd)
 
 	return wpa_auth_pmksa_create_entry(aa, spa, pmk, pmkid, expiration);
 }
+
+#ifdef CONFIG_PMKSA_CACHE_EXTERNAL
+#ifdef CONFIG_MESH
 
 #endif /* CONFIG_MESH */
 #endif /* CONFIG_PMKSA_CACHE_EXTERNAL */
