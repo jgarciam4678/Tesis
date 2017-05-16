@@ -730,7 +730,7 @@ void * hostapd_ctrl_iface_pmksa_create_entry_2(const u8 *aa, char *cmd)
 	if (sscanf(pos, "%d", &expiration) != 1)
 		return NULL;
 
-	return wpa_auth_pmksa_add_entry(aa, *cmd);
+	return wpa_auth_pmksa_add_entry(aa, cmd);
 }
 
 #ifdef CONFIG_PMKSA_CACHE_EXTERNAL
