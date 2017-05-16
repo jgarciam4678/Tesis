@@ -655,6 +655,11 @@ void * hostapd_ctrl_iface_pmksa_create_entry(const u8 *aa, char *cmd)
 	char *pos;
 	int expiration;
 
+	printf ("%d\n", spa);
+	printf ("%d\n", pmkid);
+	printf ("%d\n", pmk);
+	printf ("%i\n", expiration);
+	
 	/*
 	 * Entry format:
 	 * <BSSID> <PMKID> <PMK> <expiration in seconds>
