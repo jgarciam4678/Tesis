@@ -4403,7 +4403,7 @@ void wpa_auth_get_fils_aead_params(struct wpa_state_machine *sm,
 #endif /* CONFIG_FILS */
 
 
-static int wpas_ctrl_iface_pmksa_add(struct hostapd *hadp,
+static int wpas_ctrl_iface_pmksa_add(struct wpa_supplicant *wpa_s,
 				     char *cmd)
 {
 	struct rsn_pmksa_cache_entry *entry;
