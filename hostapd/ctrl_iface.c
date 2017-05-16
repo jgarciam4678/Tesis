@@ -2157,7 +2157,7 @@ static int hostapd_ctrl_iface_req_range(struct hostapd_data *hapd, char *cmd)
 }
 
 
-static int hostapd_ctrl_iface_pmksa_add(struct wpa_supplicant *wpa_s,
+static int hostapd_ctrl_iface_pmksa_add(struct hostapd_data *hapd,
 				     char *cmd)
 {
 	struct rsn_pmksa_cache_entry *entry;
@@ -2241,7 +2241,7 @@ static int hostapd_ctrl_iface_pmksa_add(struct wpa_supplicant *wpa_s,
 
 	entry->network_ctx = ssid;
 
-	hostapd_ctrl_iface_ap_pmksa_add(wpa_s->wpa, entry);
+	hostapd_ctrl_iface_ap_pmksa_add(hapd, entry);
 	entry = NULL;
 	ret = 0;
 fail:
