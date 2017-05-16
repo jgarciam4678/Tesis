@@ -4433,7 +4433,7 @@ static int wpas_ctrl_iface_pmksa_add(struct wpa_authenticator *wpa_auth,
 	entry = os_zalloc(sizeof(*entry));
 	if (!entry)
 		return -1;
-
+	/*
 	if (hwaddr_aton(pos, entry->aa))
 		goto fail;
 
@@ -4441,7 +4441,7 @@ static int wpas_ctrl_iface_pmksa_add(struct wpa_authenticator *wpa_auth,
 	if (!pos)
 		goto fail;
 	pos++;
-
+	*/
 	if (hexstr2bin(pos, entry->pmkid, PMKID_LEN) < 0)
 		goto fail;
 
@@ -4475,7 +4475,7 @@ static int wpas_ctrl_iface_pmksa_add(struct wpa_authenticator *wpa_auth,
 		}
 		pos++;
 	}
-	if (pos) {
+	/*if (pos) {
 		if (hexstr2bin(pos, entry->fils_cache_id,
 			       FILS_CACHE_ID_LEN) < 0)
 			goto fail;
@@ -4486,7 +4486,7 @@ static int wpas_ctrl_iface_pmksa_add(struct wpa_authenticator *wpa_auth,
 	entry->reauth_time = now.sec + reauth_time;
 
 	entry->network_ctx = ssid;
-
+	*/
 	pmksa_cache_auth_add_entry(wpa_s->wpa, entry);
 	entry = NULL;
 	ret = 0;
