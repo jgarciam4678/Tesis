@@ -1746,7 +1746,7 @@ static int hostapd_ctrl_iface_data_test_frame(struct hostapd_data *hapd,
 {
 	u8 *buf;
 	struct ether_header *eth;
-	struct l2_packet_data *l2 = NULL;hostapd_ctrl_iface_pmksa_create_entry
+	struct l2_packet_data *l2 = NULL;
 	size_t len;
 	u16 ethertype;
 	int res = -1;
