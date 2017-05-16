@@ -4487,7 +4487,7 @@ static int wpas_ctrl_iface_pmksa_add(struct wpa_authenticator *wpa_auth,
 
 	entry->network_ctx = ssid;
 	*/
-	pmksa_cache_auth_add_entry(wpa_s->wpa, entry);
+	pmksa_cache_auth_add_entry(wpa_auth->pmksa, entry);
 	entry = NULL;
 	ret = 0;
 fail:
