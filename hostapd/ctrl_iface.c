@@ -2157,98 +2157,16 @@ static int hostapd_ctrl_iface_req_range(struct hostapd_data *hapd, char *cmd)
 }
 
 
-/*static int hostapd_ctrl_iface_pmksa_add(struct hostapd_data *hapd,
+static int hostapd_ctrl_iface_pmksa_add(struct hostapd_data *hapd,
 				     char *cmd)
 {
-	struct rsn_pmksa_cache_entry *entry;
-	struct wpa_ssid *ssid;
-	char *pos, *pos2;
-	int ret = -1;
-	struct os_reltime now;
-	int reauth_time = 0, expiration = 0, i;
-
-	/*
-	 * Entry format:
-	 * <network_id> <BSSID> <PMKID> <PMK> <reauth_time in seconds>
-	 * <expiration in seconds> <akmp> <opportunistic>
-	 * [FILS Cache Identifier]
-	 
-
-	ssid = wpa_config_get_network(wpa_s->conf, atoi(cmd));
-	if (!ssid)
-		return -1;
-	
-	
-	pos = os_strchr(cmd, ' ');
-	if (!pos)
-		return -1;
-	pos++;
-
-	entry = os_zalloc(sizeof(*entry));
-	if (!entry)
-		return -1;
-
-	if (hwaddr_aton(pos, entry->aa))
-		goto fail;
-
-	pos = os_strchr(pos, ' ');
-	if (!pos)
-		goto fail;
-	pos++;
-
-	if (hexstr2bin(pos, entry->pmkid, PMKID_LEN) < 0)
-		goto fail;
-
-	pos = os_strchr(pos, ' ');
-	if (!pos)
-		goto fail;
-	pos++;
-
-	pos2 = os_strchr(pos, ' ');
-	if (!pos2)
-		goto fail;
-	entry->pmk_len = (pos2 - pos) / 2;
-	if (entry->pmk_len < PMK_LEN || entry->pmk_len > PMK_LEN_MAX ||
-	    hexstr2bin(pos, entry->pmk, entry->pmk_len) < 0)
-		goto fail;
-
-	pos = os_strchr(pos, ' ');
-	if (!pos)
-		goto fail;
-	pos++;
-
-	if (sscanf(pos, "%d %d %d %d", &reauth_time, &expiration,
-		   &entry->akmp, &entry->opportunistic) != 4)
-		goto fail;
-	for (i = 0; i < 4; i++) {
-		pos = os_strchr(pos, ' ');
-		if (!pos) {
-			if (i < 3)
-				goto fail;
-			break;
-		}
-		pos++;
-	}
-	if (pos) {
-		if (hexstr2bin(pos, entry->fils_cache_id,
-			       FILS_CACHE_ID_LEN) < 0)
-			goto fail;
-		entry->fils_cache_id_set = 1;
-	}hostapd_ctrl_iface_ap_pmksa_add
-	os_get_reltime(&now);
-	entry->expiration = now.sec + expiration;
-	entry->reauth_time = now.sec + reauth_time;
-
-	entry->network_ctx = ssid;
-
-	hostapd_ctrl_iface_ap_pmksa_add(hapd, entry);
+	hostapd_ctrl_iface_ap_pmksa_add(hapd, cmd);
 	entry = NULL;
 	ret = 0;
 fail:
 	os_free(entry);
 	return ret;
 }
-*/
 
 
 static int hostapd_ctrl_iface_req_beacon(struct hostapd_data *hapd,
@@ -2492,7 +2410,7 @@ static int hostapd_ctrl_iface_receive_process(struct hostapd_data *hapd,
 				reply_len = -1;
 			else
 				reply_len += res;
-		}
+		}wpas_ctrl_iface_pmksa_add
 #endif /* CONFIG_NO_RADIUS */
 	} else if (os_strncmp(buf, "MIB ", 4) == 0) {
 		reply_len = hostapd_ctrl_iface_mib(hapd, reply, reply_size,
@@ -2697,9 +2615,8 @@ static int hostapd_ctrl_iface_receive_process(struct hostapd_data *hapd,
 		reply_len = hostapd_ctrl_iface_pmksa_list_mesh(hapd, NULL, reply,
 						  reply_size);
 	} else if (os_strncmp(buf, "PMKSA_ADD ", 10) == 0) {
-		/*if (hostapd_ctrl_iface_pmksa_add(hapd, buf + 10)<0);
-			reply_len = -1;*/
-		hostapd_ctrl_iface_pmksa_add(hapd, buf + 10);
+		if (hostapd_ctrl_iface_pmksa_add(hapd, buf + 10)<0);
+			reply_len = -1;
 	} else if (os_strcmp(buf, "HELLOWORLD") == 0) { 
 		os_memcpy(reply, "Hell! O' world, why won't my code compile?\n\n", 46); 
 		reply_len = 46;	
