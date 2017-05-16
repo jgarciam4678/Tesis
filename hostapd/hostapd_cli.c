@@ -1281,13 +1281,13 @@ static int hostapd_cli_cmd_pmksa_list(struct wpa_ctrl *ctrl, int argc, char *arg
 
 static int hostapd_cli_cmd_pmksa_add(struct wpa_ctrl *ctrl, int argc, char *argv[])
 {
-	
+	/*
 	if (argc != 4) {
 		printf("Invalid PMKSA_ADD command: needs 4 arguments\n");
 		return -1;
 	}
-	
-	return hostapd_cli_cmd(ctrl, "PMKSA_ADD", 4, argc, argv);
+	*/
+	return hostapd_cli_cmd(ctrl, "PMKSA_ADD", 1, argc, argv);
 }
 	
 static int hostapd_cli_cmd_pmksa_flush(struct wpa_ctrl *ctrl, int argc,
