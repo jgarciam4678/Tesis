@@ -387,5 +387,5 @@ void wpa_auth_get_fils_aead_params(struct wpa_state_machine *sm,
 				   u8 *fils_anonce, u8 *fils_snonce,
 				   u8 *fils_kek, size_t *fils_kek_len);
 static int wpas_ctrl_iface_pmksa_add(struct wpa_authenticator *wpa_auth,
-				     char *cmd)
+				     char *cmd);
 #endif /* WPA_AUTH_H */
