@@ -647,6 +647,11 @@ int hostapd_ctrl_iface_pmksa_list_mesh(struct hostapd_data *hapd,
 	return wpa_auth_pmksa_list_mesh(hapd->wpa_auth, addr, buf, len);
 }
 
+void hostapd_ctrl_iface_ap_pmksa_add(struct hostapd_data *hapd)
+{
+	wpa_auth_pmksa_add_entry(hapd->wpa_auth);
+}
+
 void * hostapd_ctrl_iface_pmksa_create_entry(const u8 *aa, char *cmd)
 {
 	u8 spa[ETH_ALEN];
