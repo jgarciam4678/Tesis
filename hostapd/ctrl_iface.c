@@ -2157,7 +2157,7 @@ static int hostapd_ctrl_iface_req_range(struct hostapd_data *hapd, char *cmd)
 }
 
 
-static int hostapd_ctrl_iface_pmksa_add(struct hostapd_data *hapd,
+/*static int hostapd_ctrl_iface_pmksa_add(struct hostapd_data *hapd,
 				     char *cmd)
 {
 	struct rsn_pmksa_cache_entry *entry;
@@ -2177,7 +2177,7 @@ static int hostapd_ctrl_iface_pmksa_add(struct hostapd_data *hapd,
 	ssid = wpa_config_get_network(wpa_s->conf, atoi(cmd));
 	if (!ssid)
 		return -1;
-	*/
+	
 	
 	pos = os_strchr(cmd, ' ');
 	if (!pos)
@@ -2234,7 +2234,7 @@ static int hostapd_ctrl_iface_pmksa_add(struct hostapd_data *hapd,
 			       FILS_CACHE_ID_LEN) < 0)
 			goto fail;
 		entry->fils_cache_id_set = 1;
-	}
+	}hostapd_ctrl_iface_ap_pmksa_add
 	os_get_reltime(&now);
 	entry->expiration = now.sec + expiration;
 	entry->reauth_time = now.sec + reauth_time;
@@ -2248,7 +2248,7 @@ fail:
 	os_free(entry);
 	return ret;
 }
-
+*/
 
 
 static int hostapd_ctrl_iface_req_beacon(struct hostapd_data *hapd,
