@@ -660,9 +660,9 @@ void * hostapd_ctrl_iface_pmksa_create_entry(const u8 *aa, char *cmd)
 	char *pos;
 	int expiration;
 
-	printf ("%d\n", spa);
-	printf ("%d\n", pmkid);
-	printf ("%d\n", pmk);
+	printf ("%u\n", spa);
+	printf ("%u\n", pmkid);
+	printf ("%u\n", pmk);
 	printf ("%i\n", expiration);
 	
 	/*
@@ -699,12 +699,12 @@ void * hostapd_ctrl_iface_pmksa_create_entry(const u8 *aa, char *cmd)
 
 	return wpa_auth_pmksa_create_entry(aa, spa, pmk, pmkid, expiration);
 }
-
+/*
 int hostapd_ctrl_iface_pmksa_add(struct hostapd_data *hapd, struct *buf)
 {
 	return wpa_auth_pmksa_add_entry(hapd->wpa_auth, buf);
 }
-
+*/
 #ifdef CONFIG_PMKSA_CACHE_EXTERNAL
 #ifdef CONFIG_MESH
 
