@@ -2160,11 +2160,10 @@ static int hostapd_ctrl_iface_req_range(struct hostapd_data *hapd, char *cmd)
 static int hostapd_ctrl_iface_pmksa_add(struct hostapd_data *hapd,
 				     char *cmd)
 {
+	int ret = 0;
+		
 	hostapd_ctrl_iface_ap_pmksa_add(hapd, cmd);
-	entry = NULL;
-	ret = 0;
-fail:
-	os_free(entry);
+	
 	return ret;
 }
 
