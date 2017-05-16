@@ -699,12 +699,12 @@ void * hostapd_ctrl_iface_pmksa_create_entry(const u8 *aa, char *cmd)
 
 	return wpa_auth_pmksa_create_entry(aa, spa, pmk, pmkid, expiration);
 }
-/*
-int hostapd_ctrl_iface_pmksa_add(struct hostapd_data *hapd, struct *buf)
+
+int hostapd_ctrl_iface_pmksa_add(struct hostapd_data *hapd, char *buf)
 {
-	return wpa_auth_pmksa_add_entry(hapd->wpa_auth, buf);
+	return wpas_ctrl_iface_pmksa_add(hapd->wpa_auth, buf);
 }
-*/
+
 #ifdef CONFIG_PMKSA_CACHE_EXTERNAL
 #ifdef CONFIG_MESH
 
