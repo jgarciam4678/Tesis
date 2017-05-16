@@ -700,7 +700,7 @@ void * hostapd_ctrl_iface_pmksa_create_entry(const u8 *aa, char *cmd)
 	return wpa_auth_pmksa_create_entry(aa, spa, pmk, pmkid, expiration);
 }
 
-int hostapd_ctrl_iface_pmksa_add(struct hostapd_data *hapd, char *buf)
+int hostapd_ctrl_iface_pmksa_add(struct hostapd_data *hapd, struct *buf)
 {
 	return wpa_auth_pmksa_add_entry(hapd->wpa_auth, buf);
 }
