@@ -2409,7 +2409,7 @@ static int hostapd_ctrl_iface_receive_process(struct hostapd_data *hapd,
 				reply_len = -1;
 			else
 				reply_len += res;
-		}wpas_ctrl_iface_pmksa_add
+		}
 #endif /* CONFIG_NO_RADIUS */
 	} else if (os_strncmp(buf, "MIB ", 4) == 0) {
 		reply_len = hostapd_ctrl_iface_mib(hapd, reply, reply_size,
