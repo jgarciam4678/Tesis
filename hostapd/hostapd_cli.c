@@ -1282,10 +1282,10 @@ static int hostapd_cli_cmd_pmksa_list(struct wpa_ctrl *ctrl, int argc, char *arg
 static int hostapd_cli_cmd_pmksa_add(struct wpa_ctrl *ctrl, int argc, char *argv[])
 {
 	/*
-	if (argc != 4) {
-		printf("Invalid PMKSA_ADD command: needs 4 arguments\n");
-		return -1;
-	}
+	*if (argc != 4) {
+	*	printf("Invalid PMKSA_ADD command: needs 4 arguments\n");
+	*	return -1;
+	*}
 	*/
 	return hostapd_cli_cmd(ctrl, "PMKSA_ADD", 1, argc, argv);
 }
@@ -1510,7 +1510,7 @@ static const struct hostapd_cli_cmd hostapd_cli_commands[] = {
 	{ "pmksa_list", hostapd_cli_cmd_pmksa_list, NULL,
 	  " = show PMKID & PMK cache entries" },
 	{ "pmksa_add", hostapd_cli_cmd_pmksa_add, NULL,
-	  "<BSSID> <PMKID> <PMK> <expiration in seconds> = store PMKSA new cache entry" },
+	  "<SA> <PMKID> <PMK> <expiration in seconds> = store PMKSA new cache entry" },
 	{ "pmksa_flush", hostapd_cli_cmd_pmksa_flush, NULL,
 	  " = flush PMKSA cache" },
 	{ "set_neighbor", hostapd_cli_cmd_set_neighbor, NULL,
