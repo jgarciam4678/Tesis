@@ -696,12 +696,12 @@ static int hostapd_ap_pmksa_cache_add_external(struct hostapd_data *hapd,
 				     char *buf)
 {
 	struct rsn_pmksa_cache_entry *entry;
-	struct wpa_ssid *ssid;
 	char *pos, *pos2;
 	int ret = -1;
 	struct os_reltime now;
-	int reauth_time = 0, expiration = 0, i;
-
+	/*int reauth_time = 0, expiration = 0, i;
+	struct wpa_ssid *ssid;
+	
 	/*
 	 * Entry format:
 	 * <network_id> <BSSID> <PMKID> <PMK> <reauth_time in seconds>
