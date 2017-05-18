@@ -735,6 +735,9 @@ int hostapd_ap_pmksa_cache_add_external(struct hostapd_data *hapd,
 			}
 			pos++;
 		}
+	
+	printf("%i", exp);
+	
 	/*
 	pos = os_strchr(pos, ' ');
 	if (!pos)
