@@ -2356,7 +2356,7 @@ static int hostapd_ctrl_iface_mesh_pmksa_add(struct hostapd_data *hapd,
 	 * stored before wpa_s->ifmsh creation to suppress commit message
 	 * creation.
 	 */
-	return wpas_ap_pmksa_cache_add_external(hapd, cmd);
+	return hostapd_ap_pmksa_cache_add_external(hapd, cmd);
 }
 
 static int hostapd_ctrl_iface_receive_process(struct hostapd_data *hapd,
