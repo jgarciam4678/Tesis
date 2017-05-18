@@ -2390,7 +2390,7 @@ static int hostapd_ctrl_iface_receive_process(struct hostapd_data *hapd,
 			if (res < 0)
 				reply_len = -1;
 			else
-				hostapd_ctrl_iface_mesh_pmksa_addreply_len += res;
+				reply_len += res;
 		}
 		if (reply_len >= 0) {
 			res = ieee802_1x_get_mib(hapd, reply + reply_len,
