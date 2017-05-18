@@ -728,7 +728,7 @@ static int wpas_ap_pmksa_cache_add_external(struct hostapd_data *hapd,
 	if (!entry)
 		return -1;
 
-	if (hwaddr_aton(pos, entry->aa))
+	if (hwaddr_aton(pos, entry->spa))
 		goto fail;
 
 	pos = os_strchr(pos, ' ');
