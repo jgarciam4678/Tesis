@@ -55,6 +55,7 @@
 #include "fst/fst_ctrl_iface.h"
 #include "config_file.h"
 #include "ctrl_iface.h"
+#include "ap/pmksa_cache_auth.h"
 
 
 #define HOSTAPD_CLI_DUP_VALUE_MAX_LEN 256
