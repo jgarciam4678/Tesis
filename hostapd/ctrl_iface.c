@@ -2348,18 +2348,18 @@ static int hostapd_ctrl_driver_flags(struct hostapd_iface *iface, char *buf,
 
 	return pos - buf;
 }
-/*
+
 static int hostapd_ctrl_iface_mesh_pmksa_add(struct hostapd_data *hapd,
-					  char *cmd)
+					  char *buf)
 {
 	/*
 	 * We do not check mesh interface existance because PMKSA should be
 	 * stored before wpa_s->ifmsh creation to suppress commit message
 	 * creation.
-	 
-	return hostapd_ap_pmksa_cache_add_external(hapd, cmd);
+	*/ 
+	return hostapd_ap_pmksa_cache_add_external(hapd, buf);
 }
-*/
+
 static int hostapd_ctrl_iface_receive_process(struct hostapd_data *hapd,
 					      char *buf, char *reply,
 					      int reply_size,
@@ -2390,7 +2390,7 @@ static int hostapd_ctrl_iface_receive_process(struct hostapd_data *hapd,
 			if (res < 0)
 				reply_len = -1;
 			else
-				reply_len += res;
+				hostapd_ctrl_iface_mesh_pmksa_addreply_len += res;
 		}
 		if (reply_len >= 0) {
 			res = ieee802_1x_get_mib(hapd, reply + reply_len,
@@ -2614,7 +2614,7 @@ static int hostapd_ctrl_iface_receive_process(struct hostapd_data *hapd,
 		reply_len = hostapd_ctrl_iface_pmksa_list_mesh(hapd, NULL, reply,
 						  reply_size);
 	} else if (os_strncmp(buf, "PMKSA_ADD ", 10) == 0) {
-		if (hostapd_ap_pmksa_cache_add_external(hapd, buf + 10)<0);
+		if (hostapd_ctrl_iface_mesh_pmksa_add(hapd, buf + 10)<0);
 			reply_len = -1;
 	} else if (os_strcmp(buf, "HELLOWORLD") == 0) { 
 		os_memcpy(reply, "Hell! O' world, why won't my code compile?\n\n", 46); 
