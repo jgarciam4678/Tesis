@@ -696,7 +696,7 @@ void * hostapd_ctrl_iface_pmksa_create_entry(const u8 *aa, char *cmd)
 	return wpa_auth_pmksa_create_entry(aa, spa, pmk, pmkid, expiration);
 }
 
-static int wpas_ap_pmksa_cache_add_external(hostapd_data *hapd,
+static int wpas_ap_pmksa_cache_add_external(struct hostapd_data *hapd,
 				     char *cmd)
 {
 	struct rsn_pmksa_cache_entry *entry;
