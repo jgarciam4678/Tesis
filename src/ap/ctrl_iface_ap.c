@@ -735,22 +735,25 @@ int hostapd_ap_pmksa_cache_add_external(struct hostapd_data *hapd,
 	pos++;
 
 	if (hexstr2bin(pos, entry->pmkid, PMKID_LEN) < 0)
-		printf("PMKID Fail");
+		printf("PMKID_LEN Fail");
 		goto fail;
 
 	pos = os_strchr(pos, ' ');
 	if (!pos)
+		printf("Espacio3 Fail");
 		goto fail;
 	pos++;
 
 	pos2 = os_strchr(pos, ' ');
 	if (!pos2)
+		printf("Espacio4 Fail");
 		goto fail;
 	entry->pmk_len = (pos2 - pos) / 2;
 	if (entry->pmk_len < PMK_LEN || entry->pmk_len > PMK_LEN_MAX ||
 	    hexstr2bin(pos, entry->pmk, entry->pmk_len) < 0)
+		printf("PMK_LEN Fail");
 		goto fail;
-
+	/*
 	pos = os_strchr(pos, ' ');
 	if (!pos)
 		goto fail;
@@ -782,6 +785,7 @@ int hostapd_ap_pmksa_cache_add_external(struct hostapd_data *hapd,
 	entry->network_ctx = ssid;
 	*/
 	entry->expiration = now.sec + 20000;
+	printf("Expiration Fail");
 	
 	wpa_auth_pmksa_add_entry(hapd->wpa_auth, entry);
 	entry = NULL;
