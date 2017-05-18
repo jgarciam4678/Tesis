@@ -723,7 +723,7 @@ int hostapd_ap_pmksa_cache_add_external(struct hostapd_data *hapd,
 	if (!entry)
 		return -1;
 	
-	if (sscanf(pos, "%u %x %x, %d", &supli_add->spa, &ID->pmkid,
+	if (sscanf(pos, "%i %i %i, %i", &supli_add->spa, &ID->pmkid,
 			   &PMK->pmk, &exp->expiration) != 4)
 			goto fail;
 		for (i = 0; i < 4; i++) {
