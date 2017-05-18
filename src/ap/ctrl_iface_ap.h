@@ -38,7 +38,7 @@ void * hostapd_ctrl_iface_pmksa_create_entry(const u8 *aa, char *cmd);
 
 int hostapd_ctrl_iface_ap_pmksa_add(struct hostapd_data *hapd, char *buf);
 
-static int wpas_ap_pmksa_cache_add_external(hostapd_data *hapd,
+static int wpas_ap_pmksa_cache_add_external(struct hostapd_data *hapd,
 				     char *cmd);
 
 #endif /* CTRL_IFACE_AP_H */
