@@ -698,7 +698,7 @@ void * hostapd_ctrl_iface_pmksa_create_entry(const u8 *aa, char *cmd)
 }
 
 static int hostapd_ap_pmksa_cache_add_external(struct hostapd_data *hapd,
-				     char *cmd)
+				     char *buf)
 {
 	struct rsn_pmksa_cache_entry *entry;
 	struct wpa_ssid *ssid;
@@ -719,7 +719,7 @@ static int hostapd_ap_pmksa_cache_add_external(struct hostapd_data *hapd,
 		return -1;
 	*/
 	
-	pos = os_strchr(cmd, ' ');
+	pos = os_strchr(buf, ' ');
 	if (!pos)
 		return -1;
 	pos++;
