@@ -781,7 +781,7 @@ static int wpas_ap_pmksa_cache_add_external(hostapd_data *hapd,
 
 	entry->network_ctx = ssid;
 	*/
-	entry->expiration = now.sec + 20000
+	entry->expiration = now.sec + 20000;
 	
 	wpa_sm_pmksa_cache_add_entry(wpa_s->wpa, entry);
 	entry = NULL;
