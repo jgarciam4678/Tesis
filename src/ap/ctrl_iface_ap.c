@@ -724,14 +724,18 @@ int hostapd_ap_pmksa_cache_add_external(struct hostapd_data *hapd,
 		return -1;
 
 	if (hwaddr_aton(pos, entry->spa))
+		printf("SPA Fail");
 		goto fail;
+		
 
 	pos = os_strchr(pos, ' ');
 	if (!pos)
+		printf("Espacio2 Fail");
 		goto fail;
 	pos++;
 
 	if (hexstr2bin(pos, entry->pmkid, PMKID_LEN) < 0)
+		printf("PMKID Fail");
 		goto fail;
 
 	pos = os_strchr(pos, ' ');
