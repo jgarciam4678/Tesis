@@ -699,8 +699,8 @@ int hostapd_ap_pmksa_cache_add_external(struct hostapd_data *hapd,
 	char *pos, *pos2;
 	int ret = -1;
 	struct os_reltime now;
-	int reauth_time = 0, expiration = 0, i;
-	struct wpa_ssid *ssid;
+	int supli_add = 0, ID = 0, PMK = 0, exp=0, i;
+	/*struct wpa_ssid *ssid;*/
 	
 	/*
 	 * Entry format:
@@ -722,12 +722,20 @@ int hostapd_ap_pmksa_cache_add_external(struct hostapd_data *hapd,
 	entry = os_zalloc(sizeof(*entry));
 	if (!entry)
 		return -1;
-
-	if (sscanf(pos, "%d", entry->spa) != 1)
-		wpa_printf(MSG_ERROR, "SPA Fail");
-		goto fail;
-		
-
+	
+	if (sscanf(pos, "%u %x %x, %d", &supli_add->spa, &ID->pmkid,
+			   &PMK->pmk, &exp->expiration) != 4)
+			goto fail;
+		for (i = 0; i < 4; i++) {
+			pos = os_strchr(pos, ' ');
+			if (!pos) {
+				if (i < 3)
+					goto fail;
+				break;
+			}
+			pos++;
+		}
+	/*
 	pos = os_strchr(pos, ' ');
 	if (!pos)
 		wpa_printf(MSG_ERROR, "Espacio2 Fail");
@@ -777,10 +785,10 @@ int hostapd_ap_pmksa_cache_add_external(struct hostapd_data *hapd,
 	entry->reauth_time = now.sec + reauth_time;
 
 	entry->network_ctx = ssid;
-	*/
+	
 	entry->expiration = now.sec + 20000;
 	wpa_printf(MSG_ERROR, "Expiration Fail");
-	
+	*/
 	wpa_auth_pmksa_add_entry(hapd->wpa_auth, entry);
 	entry = NULL;
 	ret = 0;
