@@ -699,7 +699,7 @@ int hostapd_ap_pmksa_cache_add_external(struct hostapd_data *hapd,
 	char *pos, *pos2;
 	int ret = -1;
 	struct os_reltime now;
-	/*int reauth_time = 0, expiration = 0, i;
+	int reauth_time = 0, expiration = 0, i;
 	struct wpa_ssid *ssid;
 	
 	/*
@@ -707,7 +707,7 @@ int hostapd_ap_pmksa_cache_add_external(struct hostapd_data *hapd,
 	 * <network_id> <BSSID> <PMKID> <PMK> <reauth_time in seconds>
 	 * <expiration in seconds> <akmp> <opportunistic>
 	 * [FILS Cache Identifier]
-	 
+	
 
 	ssid = wpa_config_get_network(wpa_s->conf, atoi(cmd));
 	if (!ssid)
@@ -723,7 +723,7 @@ int hostapd_ap_pmksa_cache_add_external(struct hostapd_data *hapd,
 	if (!entry)
 		return -1;
 
-	if (hwaddr_aton(pos, entry->spa))
+	if (sscanf(pos, "%d", entry->spa) != 1)
 		wpa_printf(MSG_ERROR, "SPA Fail");
 		goto fail;
 		
@@ -734,7 +734,7 @@ int hostapd_ap_pmksa_cache_add_external(struct hostapd_data *hapd,
 		goto fail;
 	pos++;
 
-	if (hexstr2bin(pos, entry->pmkid, PMKID_LEN) < 0)
+	if (sscanf(pos, entry->pmkid, PMKID_LEN) < 0)
 		wpa_printf(MSG_ERROR, "PMKID_LEN Fail");
 		goto fail;
 
@@ -753,14 +753,14 @@ int hostapd_ap_pmksa_cache_add_external(struct hostapd_data *hapd,
 	    hexstr2bin(pos, entry->pmk, entry->pmk_len) < 0)
 		wpa_printf(MSG_ERROR, "PMK_LEN Fail");
 		goto fail;
-	/*
+	
 	pos = os_strchr(pos, ' ');
 	if (!pos)
 		goto fail;
 	pos++;
-	/*
-	if (sscanf(pos, "%d %d %d %d", &reauth_time, &expiration,
-		   &entry->akmp, &entry->opportunistic) != 4)
+	
+	if (sscanf(pos, "%d %d %d", &supli_add->spa, &PMKID->pmkid,
+		   &PMK->pmk, &exp->expiration) != 4)
 		goto fail;
 	for (i = 0; i < 4; i++) {
 		pos = os_strchr(pos, ' ');
@@ -771,19 +771,13 @@ int hostapd_ap_pmksa_cache_add_external(struct hostapd_data *hapd,
 		}
 		pos++;
 	}
-	if (pos) {
-		if (hexstr2bin(pos, entry->fils_cache_id,
-			       FILS_CACHE_ID_LEN) < 0)
-			goto fail;
-		entry->fils_cache_id_set = 1;
-	}
 	
 	os_get_reltime(&now);
 	entry->expiration = now.sec + expiration;
 	entry->reauth_time = now.sec + reauth_time;
 
 	entry->network_ctx = ssid;
-	*/
+	
 	entry->expiration = now.sec + 20000;
 	wpa_printf(MSG_ERROR, "Expiration Fail");
 	
