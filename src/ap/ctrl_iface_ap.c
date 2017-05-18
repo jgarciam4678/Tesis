@@ -656,11 +656,6 @@ void * hostapd_ctrl_iface_pmksa_create_entry(const u8 *aa, char *cmd)
 	u8 pmk[PMK_LEN_MAX];
 	char *pos;
 	int expiration;
-
-	printf ("%u\n", spa);
-	printf ("%u\n", pmkid);
-	printf ("%u\n", pmk);
-	printf ("%i\n", expiration);
 	
 	/*
 	 * Entry format:
