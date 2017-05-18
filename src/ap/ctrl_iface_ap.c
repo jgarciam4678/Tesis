@@ -707,18 +707,18 @@ int hostapd_ap_pmksa_cache_add_external(struct hostapd_data *hapd,
 	 * <network_id> <BSSID> <PMKID> <PMK> <reauth_time in seconds>
 	 * <expiration in seconds> <akmp> <opportunistic>
 	 * [FILS Cache Identifier]
-	
+	*/	
 
-	ssid = wpa_config_get_network(wpa_s->conf, atoi(cmd));
-	if (!ssid)
+	if (hwaddr_aton(buf, entry->spa)) {
+		wpa_printf(MSG_ERROR, "CTRL: SET_NEIGHBOR: Bad BSSID");
 		return -1;
-	*/
+	}
 	
 	pos = os_strchr(buf, ' ');
 	if (!pos)
 		return -1;
 	pos++;
-
+/*
 	entry = os_zalloc(sizeof(*entry));
 	if (!entry)
 		return -1;
