@@ -758,7 +758,7 @@ int hostapd_ap_pmksa_cache_add_external(struct hostapd_data *hapd,
 	if (!pos)
 		goto fail;
 	pos++;
-	
+	/*
 	if (sscanf(pos, "%d %d %d", &supli_add->spa, &PMKID->pmkid,
 		   &PMK->pmk, &exp->expiration) != 4)
 		goto fail;
@@ -777,7 +777,7 @@ int hostapd_ap_pmksa_cache_add_external(struct hostapd_data *hapd,
 	entry->reauth_time = now.sec + reauth_time;
 
 	entry->network_ctx = ssid;
-	
+	*/
 	entry->expiration = now.sec + 20000;
 	wpa_printf(MSG_ERROR, "Expiration Fail");
 	
