@@ -34,6 +34,9 @@ static inline void
 hostapd_global_ctrl_iface_deinit(struct hapd_interfaces *interface)
 {
 }
+
+static int hostapd_ap_pmksa_cache_add_external(struct hostapd_data *hapd,
+				     char *cmd)
 #endif /* CONFIG_NO_CTRL_IFACE */
 
 #endif /* CTRL_IFACE_H */
