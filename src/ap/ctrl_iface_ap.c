@@ -722,8 +722,6 @@ int hostapd_ap_pmksa_cache_add_external(struct hostapd_data *hapd,
 	if (hwaddr_aton(buf, entry->spa))
 		goto fail;
 	
-	wpa_printf(MSG_ERROR, "%s", buf);
-	/*
 	pos = os_strchr(buf, ' ');
 	if (!pos)
 		goto fail;
@@ -749,7 +747,9 @@ int hostapd_ap_pmksa_cache_add_external(struct hostapd_data *hapd,
 	if (!pos)
 		goto fail;
 	pos++;
-
+	
+	wpa_printf(MSG_ERROR, "%s", buf);
+	/*
 	if (sscanf(pos, "%d %d %d %d", &reauth_time, &expiration,
 		   &entry->akmp, &entry->opportunistic) != 4)
 		goto fail;
