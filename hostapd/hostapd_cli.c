@@ -1301,7 +1301,7 @@ static int helloworld(struct wpa_ctrl *ctrl, int argc, char *argv[])
 	return wpa_ctrl_command(ctrl, "HELLOWORLD");
 }
 
-static int pikachu(struct wpa_ctrl *ctrl, int argc, char *argv[])
+static int hostapd_new_entry(struct wpa_ctrl *ctrl, int argc, char *argv[])
 {
 	return wpa_ctrl_command(ctrl, "pikachu");
 }
