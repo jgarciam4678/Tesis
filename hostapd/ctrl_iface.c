@@ -2361,16 +2361,21 @@ static int hostapd_ctrl_iface_mesh_pmksa_add(struct hostapd_data *hapd,
 }
 */
 
-int hostapd_ctrl_iface_mesh_pmksa_add(struct hostapd_data *hapd,
-					  char *buf)
+static int new_entry_addr(struct hostapd_data *hapd,
+					  const char *buf)
 {
 	u8 addr[ETH_ALEN];
-		
-	if (hwaddr_aton(buf, addr))
-		
-	printf("ok");
 	
-	return -1;
+	wpa_printf(MSG_DEBUG, "CTRL_IFACE NEW_STA %s", buf);
+
+	if (hwaddr_aton(txtaddr, addr))
+		return -1;
+
+	wpa_printf(MSG_DEBUG, "Add new STA " MACSTR " based on ctrl_iface "
+		   "notification", MAC2STR(addr));
+	
+	return 0;
+
 }
 
 static int hostapd_ctrl_iface_receive_process(struct hostapd_data *hapd,
