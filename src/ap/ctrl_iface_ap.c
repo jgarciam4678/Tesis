@@ -699,7 +699,7 @@ int hostapd_ap_pmksa_cache_add_external(struct hostapd_data *hapd,
 	char *pos, *pos2;
 	int ret = -1;
 	struct os_reltime now;
-	u8 pmkid;
+	u8 pmkid[PMKID_LEN];
 	
 	/*int reauth_time = 0, expiration = 0, i;
 
