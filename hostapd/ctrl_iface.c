@@ -2374,12 +2374,12 @@ static int new_entry_addr(struct hostapd_data *hapd,
 	pos++;
 	
 	if (sscanf(pos, "%s %i", &dir, &id) != 2)
-			goto fail;
+			wpa_printf(MSG_ERROR, "ERROR1");
 		for (i = 0; i < 2; i++) {
 			pos = os_strchr(pos, ' ');
 			if (!pos) {
 				if (i < 1)
-					wpa_printf(MSG_ERROR, "ERROR");
+					wpa_printf(MSG_ERROR, "ERROR2");
 				break;
 			}
 			pos++;
