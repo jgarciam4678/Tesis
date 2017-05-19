@@ -2370,7 +2370,7 @@ static int hostapd_ctrl_iface_mesh_pmksa_add(struct hostapd_data *hapd,
 		return -1;
 	printf("ok");
 	
-	return 0
+	return 0;
 }
 
 static int hostapd_ctrl_iface_receive_process(struct hostapd_data *hapd,
