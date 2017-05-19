@@ -1301,7 +1301,7 @@ static int helloworld(struct wpa_ctrl *ctrl, int argc, char *argv[])
 	return wpa_ctrl_command(ctrl, "HELLOWORLD");
 }
 
-static int new_entry(struct wpa_ctrl *ctrl, int argc, char *argv[])
+static int hostapd_new_entry(struct wpa_ctrl *ctrl, int argc, char *argv[])
 {
 	return wpa_ctrl_command(ctrl, "NEW_ENTRY");
 }
@@ -1510,8 +1510,8 @@ static const struct hostapd_cli_cmd hostapd_cli_commands[] = {
 	  "[level] = show/change log verbosity level" },
 	{ "pmksa", hostapd_cli_cmd_pmksa, NULL,
 	  " = show PMKSA cache entries" },
-	{ "new_entry", new_entry, NULL,
-	  " =<SA> ingresar addr"},
+	{ "new_entry", hostapd_new_entry, NULL,
+	  " = <SA> ingresar addr" },
 	{ "pmksa_list", hostapd_cli_cmd_pmksa_list, NULL,
 	  " = show PMKID & PMK cache entries" },
 	{ "pmksa_add", hostapd_cli_cmd_pmksa_add, NULL,
