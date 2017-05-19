@@ -699,35 +699,24 @@ int hostapd_ap_pmksa_cache_add_external(struct hostapd_data *hapd,
 	char *pos, *pos2;
 	int ret = -1, expiration = 0;
 	struct os_reltime now;
-		
-	/*int reauth_time = 0, expiration = 0, i;
 
-	
+	/*
 	 * Entry format:
 	 * <network_id> <BSSID> <PMKID> <PMK> <reauth_time in seconds>
 	 * <expiration in seconds> <akmp> <opportunistic>
 	 * [FILS Cache Identifier]
 	 */
 
-	wpa_printf(MSG_ERROR, "%s", buf);
-	
-	/*pos = os_strchr(buf, ' ');
-	if (!pos)
-		return -1;
-	pos++;*/
+	/*wpa_printf(MSG_ERROR, "%s", buf);*/
 	
 	pos = buf;
 	
-	wpa_printf(MSG_ERROR, "%s", pos);
-
 	entry = os_zalloc(sizeof(*entry));
 	if (!entry)
 		return -1;
 
 	if (hwaddr_aton(pos, entry->spa))
 		goto fail;
-	
-	wpa_printf(MSG_ERROR, "%u", entry->spa);
 	
 	pos = os_strchr(pos, ' ');
 	if (!pos)
@@ -736,9 +725,7 @@ int hostapd_ap_pmksa_cache_add_external(struct hostapd_data *hapd,
 
 	if (hexstr2bin(pos, entry->pmkid, PMKID_LEN) < 0)
 		goto fail;
-	
-	wpa_printf(MSG_ERROR, "%u", entry->pmkid);
-	
+
 	pos = os_strchr(pos, ' ');
 	if (!pos)
 		goto fail;
@@ -748,24 +735,16 @@ int hostapd_ap_pmksa_cache_add_external(struct hostapd_data *hapd,
 	if (!pos2)
 		goto fail;
 	
-	wpa_printf(MSG_ERROR, "%u", PMK_LEN_MAX);
-	
 	entry->pmk_len = (pos2 - pos) / 2;
-	
-	wpa_printf(MSG_ERROR, "%u", entry->pmk_len);
 	
 	if (entry->pmk_len < PMK_LEN || entry->pmk_len > PMK_LEN_MAX ||
 	    hexstr2bin(pos, entry->pmk, entry->pmk_len) < 0)
 		goto fail;
-	
-	wpa_printf(MSG_ERROR, "%s", pos);
 
 	pos = os_strchr(pos, ' ');
 	if (!pos)
 		goto fail;
 	pos++;
-	
-	wpa_printf(MSG_ERROR, "%s", pos);
 	
 	if (sscanf(pos, "%d", &expiration) != 1)
 		return NULL;
