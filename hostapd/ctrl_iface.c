@@ -2368,7 +2368,7 @@ static int new_entry_addr(struct hostapd_data *hapd,
 	
 	wpa_printf(MSG_DEBUG, "CTRL_IFACE NEW_STA %s", buf);
 
-	if (hwaddr_aton(txtaddr, addr))
+	if (hwaddr_aton(buf, addr))
 		return -1;
 
 	wpa_printf(MSG_DEBUG, "Add new STA " MACSTR " based on ctrl_iface "
