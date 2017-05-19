@@ -1299,8 +1299,11 @@ static int hostapd_cli_cmd_pmksa_flush(struct wpa_ctrl *ctrl, int argc,
 static int helloworld(struct wpa_ctrl *ctrl, int argc, char *argv[])
 {
 	return wpa_ctrl_command(ctrl, "HELLOWORLD");
-	 /*printf("Hell! O' world, why won't my code compile?\n\n");
-	 return 0;*/
+}
+
+static int new_entry(struct wpa_ctrl *ctrl, int argc, char *argv[])
+{
+	return wpa_ctrl_command(ctrl, "NEW_ENTRY");
 }
 
 static int hostapd_cli_cmd_set_neighbor(struct wpa_ctrl *ctrl, int argc,
@@ -1526,6 +1529,8 @@ static const struct hostapd_cli_cmd hostapd_cli_commands[] = {
 	  " = show supported driver flags"},
 	{ "helloworld", helloworld, NULL,
 	  " = show a helloworld message from the programmer"},
+	{ "new_entry", new_entry, NULL,
+	  " = ingresar addr"},
 	{ NULL, NULL, NULL, NULL }
 };
 
