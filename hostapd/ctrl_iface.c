@@ -2371,7 +2371,7 @@ static int new_entry_addr(struct hostapd_data *hapd,
 	if (hwaddr_aton(buf, addr))
 		return -1;
 
-	printf("%s",buf);
+	wpa_printf(MSG_ERROR, "%s" ,buf);
 	
 	wpa_printf(MSG_DEBUG, "Add new STA " MACSTR " based on ctrl_iface "
 		   "notification", MAC2STR(addr));
