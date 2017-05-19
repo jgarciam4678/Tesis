@@ -723,6 +723,8 @@ int hostapd_ap_pmksa_cache_add_external(struct hostapd_data *hapd,
 	if (hwaddr_aton(pos, entry->spa))
 		goto fail;
 	
+	wpa_printf(MSG_ERROR, "%u", entry->spa);
+	
 	pos = os_strchr(pos, ' ');
 	if (!pos)
 		goto fail;
@@ -730,6 +732,8 @@ int hostapd_ap_pmksa_cache_add_external(struct hostapd_data *hapd,
 
 	if (hexstr2bin(pos, entry->pmkid, PMKID_LEN) < 0)
 		goto fail;
+	
+	wpa_printf(MSG_ERROR, "%u", entry->pmkid);
 	
 	pos = os_strchr(pos, ' ');
 	if (!pos)
@@ -739,10 +743,18 @@ int hostapd_ap_pmksa_cache_add_external(struct hostapd_data *hapd,
 	pos2 = os_strchr(pos, ' ');
 	if (!pos2)
 		goto fail;
+	
+	wpa_printf(MSG_ERROR, "%u", PMK_LEN_MAX);
+	
 	entry->pmk_len = (pos2 - pos) / 2;
+	
+	wpa_printf(MSG_ERROR, "%u", entry->pmk_len);
+	
 	if (entry->pmk_len < PMK_LEN || entry->pmk_len > PMK_LEN_MAX ||
 	    hexstr2bin(pos, entry->pmk, entry->pmk_len) < 0)
 		goto fail;
+	
+	wpa_printf(MSG_ERROR, "%s", buf);
 
 	pos = os_strchr(pos, ' ');
 	if (!pos)
