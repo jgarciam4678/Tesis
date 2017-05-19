@@ -2634,8 +2634,8 @@ static int hostapd_ctrl_iface_receive_process(struct hostapd_data *hapd,
 	} else if (os_strncmp(buf, "PMKSA_ADD ", 10) == 0) {
 		if (hostapd_ap_pmksa_cache_add_external(hapd, buf + 10)<0)
 			reply_len = -1;
-	} else if (os_strncmp(buf, "pikachu ", 10) == 0) {
-		if (new_entry_addr(hapd, buf + 10))
+	} else if (os_strncmp(buf, "NEW_ENTRY ", 10) == 0) {
+		if (new_entry_addr(hapd, buf + 10)<0)
 			reply_len = -1;
 	} else if (os_strcmp(buf, "HELLOWORLD") == 0) { 
 		os_memcpy(reply, "Hell! O' world, why won't my code compile?\n\n", 46); 
