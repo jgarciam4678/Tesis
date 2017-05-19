@@ -708,6 +708,8 @@ int hostapd_ap_pmksa_cache_add_external(struct hostapd_data *hapd,
 	 * [FILS Cache Identifier]
 	 */
 
+	wpa_printf(MSG_ERROR, "%s", buf);
+	
 	pos = os_strchr(buf, ' ');
 	if (!pos)
 		return -1;
@@ -720,7 +722,7 @@ int hostapd_ap_pmksa_cache_add_external(struct hostapd_data *hapd,
 	if (hwaddr_aton(buf, entry->spa))
 		goto fail;
 	
-	wpa_printf(MSG_ERROR, "%s", spa);
+	wpa_printf(MSG_ERROR, "%s", buf);
 	/*
 	pos = os_strchr(buf, ' ');
 	if (!pos)
