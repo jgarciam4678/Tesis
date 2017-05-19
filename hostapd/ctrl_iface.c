@@ -2360,6 +2360,19 @@ static int hostapd_ctrl_iface_mesh_pmksa_add(struct hostapd_data *hapd,
 	return hostapd_ap_pmksa_cache_add_external(hapd, buf);
 }
 */
+
+static int hostapd_ctrl_iface_mesh_pmksa_add(struct hostapd_data *hapd,
+					  char *buf)
+{
+	u8 addr[ETH_ALEN];
+		
+	if (hwaddr_aton(buf, addr))
+		return -1;
+	printf("ok");
+	
+	return 0
+}
+
 static int hostapd_ctrl_iface_receive_process(struct hostapd_data *hapd,
 					      char *buf, char *reply,
 					      int reply_size,
@@ -2615,6 +2628,9 @@ static int hostapd_ctrl_iface_receive_process(struct hostapd_data *hapd,
 						  reply_size);
 	} else if (os_strncmp(buf, "PMKSA_ADD ", 10) == 0) {
 		if (hostapd_ap_pmksa_cache_add_external(hapd, buf + 10)<0)
+			reply_len = -1;
+	} else if (os_strncmp(buf, "NEW_ENTRY ", 10) == 0) {
+		if (new_entry_addr(hapd, buf + 10))
 			reply_len = -1;
 	} else if (os_strcmp(buf, "HELLOWORLD") == 0) { 
 		os_memcpy(reply, "Hell! O' world, why won't my code compile?\n\n", 46); 
