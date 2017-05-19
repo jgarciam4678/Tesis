@@ -1304,10 +1304,10 @@ static int helloworld(struct wpa_ctrl *ctrl, int argc, char *argv[])
 static int hostapd_new_entry(struct wpa_ctrl *ctrl, int argc, char *argv[])
 {
 	if (argc != 4) {
-		printf("Invalid MOBILE command: needs 4 arguments\n");
+		printf("Invalid PMKSA_ADD command: needs 4 arguments\n");
 		return -1;
 	}
-	return hostapd_cli_cmd(ctrl, "MOBILE", 4, argc, argv);
+	return hostapd_cli_cmd(ctrl, "PMKSA_ADD", 4, argc, argv);
 }
 
 static int hostapd_cli_cmd_set_neighbor(struct wpa_ctrl *ctrl, int argc,
@@ -1477,7 +1477,7 @@ static const struct hostapd_cli_cmd hostapd_cli_commands[] = {
 	{ "level", hostapd_cli_cmd_level, NULL,
 	  "<debug level> = change debug level" },
 	{ "license", hostapd_cli_cmd_license, NULL,
-	  "= show full hostapd_cli license" },
+	  "= show full pmksa_addhostapd_cli license" },
 	{ "quit", hostapd_cli_cmd_quit, NULL,
 	  "= exit hostapd_cli" },
 	{ "set", hostapd_cli_cmd_set, hostapd_complete_set,
@@ -1518,8 +1518,8 @@ static const struct hostapd_cli_cmd hostapd_cli_commands[] = {
 	  " = <SA> ingresar addr" },
 	{ "pmksa_list", hostapd_cli_cmd_pmksa_list, NULL,
 	  " = show PMKID & PMK cache entries" },
-	{ "pmksa_add", hostapd_cli_cmd_pmksa_add, NULL,
-	  "<SA> <PMKID> <PMK> <expiration in seconds> = store PMKSA new cache entry" },
+	{ "pmksa_add", hostapd_new_entry, NULL,
+	  "<SA> <PMKID> <PMK> <expiration in seconds> = store PMKSA cache entry" },
 	{ "pmksa_flush", hostapd_cli_cmd_pmksa_flush, NULL,
 	  " = flush PMKSA cache" },
 	{ "set_neighbor", hostapd_cli_cmd_set_neighbor, NULL,
