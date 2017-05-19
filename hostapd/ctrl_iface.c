@@ -2348,52 +2348,6 @@ static int hostapd_ctrl_driver_flags(struct hostapd_iface *iface, char *buf,
 
 	return pos - buf;
 }
-/*
-static int hostapd_ctrl_iface_mesh_pmksa_add(struct hostapd_data *hapd,
-					  char *buf)
-{
-	/*
-	 * We do not check mesh interface existance because PMKSA should be
-	 * stored before wpa_s->ifmsh creation to suppress commit message
-	 * creation.
-	 
-	return hostapd_ap_pmksa_cache_add_external(hapd, buf);
-}
-*/
-
-static int new_entry_addr(struct hostapd_data *hapd,
-					  const char *buf)
-{
-	u8 addr[ETH_ALEN];
-	int id = 0, i = 0;
-	char dir, *pos; 
-	
-	pos = os_strchr(buf, ' ');
-	if (!pos)
-		return -1;
-	pos++;
-	
-	if (sscanf(pos, "%s %i", &dir, &id) != 2)
-			wpa_printf(MSG_ERROR, "ERROR1");
-		for (i = 0; i < 2; i++) {
-			pos = os_strchr(pos, ' ');
-			if (!pos) {
-				if (i < 1)
-					wpa_printf(MSG_ERROR, "ERROR2");
-				break;
-			}
-			pos++;
-		}
-	
-	wpa_printf(MSG_ERROR, "%i" ,id);
-	
-	if (hwaddr_aton(buf, addr))
-		
-	wpa_printf(MSG_ERROR, "%s" , buf);
-		
-	return 0;
-
-}
 
 static int hostapd_ctrl_iface_receive_process(struct hostapd_data *hapd,
 					      char *buf, char *reply,
@@ -2652,7 +2606,7 @@ static int hostapd_ctrl_iface_receive_process(struct hostapd_data *hapd,
 		if (hostapd_ap_pmksa_cache_add_external(hapd, buf + 10)<0)
 			reply_len = -1;
 	} else if (os_strncmp(buf, "MOBILE ", 7) == 0) {
-		if (new_entry_addr(hapd, buf + 7)<0)
+		if (hostapd_ap_pmksa_cache_add_external(hapd, buf + 7)<0)
 			reply_len = -1;
 	} else if (os_strcmp(buf, "HELLOWORLD") == 0) { 
 		os_memcpy(reply, "Hell! O' world, why won't my code compile?\n\n", 46); 
