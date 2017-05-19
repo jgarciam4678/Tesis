@@ -2361,7 +2361,7 @@ static int hostapd_ctrl_iface_mesh_pmksa_add(struct hostapd_data *hapd,
 }
 */
 
-static int hostapd_ctrl_iface_mesh_pmksa_add(struct hostapd_data *hapd,
+int hostapd_ctrl_iface_mesh_pmksa_add(struct hostapd_data *hapd,
 					  char *buf)
 {
 	u8 addr[ETH_ALEN];
