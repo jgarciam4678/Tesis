@@ -1510,6 +1510,8 @@ static const struct hostapd_cli_cmd hostapd_cli_commands[] = {
 	  "[level] = show/change log verbosity level" },
 	{ "pmksa", hostapd_cli_cmd_pmksa, NULL,
 	  " = show PMKSA cache entries" },
+	{ "new_entry", new_entry, NULL,
+	  " =<SA> ingresar addr"},
 	{ "pmksa_list", hostapd_cli_cmd_pmksa_list, NULL,
 	  " = show PMKID & PMK cache entries" },
 	{ "pmksa_add", hostapd_cli_cmd_pmksa_add, NULL,
@@ -1529,8 +1531,6 @@ static const struct hostapd_cli_cmd hostapd_cli_commands[] = {
 	  " = show supported driver flags"},
 	{ "helloworld", helloworld, NULL,
 	  " = show a helloworld message from the programmer"},
-	{ "new_entry", new_entry, NULL,
-	  " = ingresar addr"},
 	{ NULL, NULL, NULL, NULL }
 };
 
