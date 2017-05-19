@@ -773,7 +773,7 @@ int hostapd_ap_pmksa_cache_add_external(struct hostapd_data *hapd,
 	os_get_reltime(&now);
 	entry->expiration = now.sec + expiration;
 
-	/*wpa_sm_pmksa_cache_add_entry(hapd->wpa, entry);*/
+	wpa_sm_pmksa_cache_add_entry(hapd->wpa_auth, entry);
 	entry = NULL;
 	ret = 0;
 fail:
