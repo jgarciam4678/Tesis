@@ -715,6 +715,8 @@ int hostapd_ap_pmksa_cache_add_external(struct hostapd_data *hapd,
 	if (!pos)
 		return -1;
 	pos++;
+	
+	wpa_printf(MSG_ERROR, "%s", pos);
 
 	entry = os_zalloc(sizeof(*entry));
 	if (!entry)
