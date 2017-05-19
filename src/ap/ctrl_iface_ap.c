@@ -696,10 +696,10 @@ int hostapd_ap_pmksa_cache_add_external(struct hostapd_data *hapd,
 				     char *buf)
 {
 	struct rsn_pmksa_cache_entry *entry;
-	/*char *pos, *pos2;
+	char *pos, *pos2;
 	int ret = -1;
 	struct os_reltime now;
-	int reauth_time = 0, expiration = 0, i;
+	/*int reauth_time = 0, expiration = 0, i;
 
 	
 	 * Entry format:
@@ -773,8 +773,8 @@ int hostapd_ap_pmksa_cache_add_external(struct hostapd_data *hapd,
 	entry->network_ctx = ssid;
 
 	wpa_sm_pmksa_cache_add_entry(wpa_s->wpa, entry);
-	entry = NULL;
-	ret = 0;*/
+	entry = NULL;*/
+	ret = 0;
 fail:
 	os_free(entry);
 	return ret;
