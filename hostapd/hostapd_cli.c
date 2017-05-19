@@ -1304,10 +1304,10 @@ static int helloworld(struct wpa_ctrl *ctrl, int argc, char *argv[])
 static int hostapd_new_entry(struct wpa_ctrl *ctrl, int argc, char *argv[])
 {
 	if (argc != 2) {
-		printf("Invalid MOBILE command: needs 2 arguments\n");
+		printf("Invalid MOBILE command: needs 3 arguments\n");
 		return -1;
 	}
-	return hostapd_cli_cmd(ctrl, "MOBILE", 2, argc, argv);
+	return hostapd_cli_cmd(ctrl, "MOBILE", 3, argc, argv);
 }
 
 static int hostapd_cli_cmd_set_neighbor(struct wpa_ctrl *ctrl, int argc,
