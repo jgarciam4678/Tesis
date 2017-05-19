@@ -699,6 +699,7 @@ int hostapd_ap_pmksa_cache_add_external(struct hostapd_data *hapd,
 	char *pos, *pos2;
 	int ret = -1;
 	struct os_reltime now;
+	int pmkidlen = 16, pmklen = 32;
 	/*int reauth_time = 0, expiration = 0, i;
 
 	
@@ -727,7 +728,7 @@ int hostapd_ap_pmksa_cache_add_external(struct hostapd_data *hapd,
 		goto fail;
 	pos++;
 
-	if (hexstr2bin(buf, entry->pmkid, PMKID_LEN) < 0)
+	if (hexstr2bin(buf, entry->pmkid, pmkidlen) < 0)
 		goto fail;
 
 	pos = os_strchr(buf, ' ');
