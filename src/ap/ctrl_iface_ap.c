@@ -699,7 +699,8 @@ int hostapd_ap_pmksa_cache_add_external(struct hostapd_data *hapd,
 	char *pos, *pos2;
 	int ret = -1;
 	struct os_reltime now;
-	int pmkidlen = 16, pmklen = 32;
+	u8 pmkid;
+	
 	/*int reauth_time = 0, expiration = 0, i;
 
 	
@@ -732,10 +733,10 @@ int hostapd_ap_pmksa_cache_add_external(struct hostapd_data *hapd,
 		goto fail;
 	pos++;
 
-	if (hexstr2bin(buf, entry->pmkid, PMKID_LEN) < 0)
+	if (hexstr2bin(buf, pmkid, PMKID_LEN) < 0)
 		goto fail;
 	
-	wpa_printf(MSG_ERROR, "%u", entry->pmkid);
+	wpa_printf(MSG_ERROR, "%u", pmkid);
 
 	pos = os_strchr(buf, ' ');
 	if (!pos)
