@@ -2365,8 +2365,8 @@ static int new_entry_addr(struct hostapd_data *hapd,
 					  const char *buf)
 {
 	u8 addr[ETH_ALEN];
-	int id = 0, i = 0 
-	char dir; 
+	int id = 0, i = 0;
+	char dir, *pos; 
 	
 	pos = os_strchr(buf, ' ');
 	if (!pos)
@@ -2389,14 +2389,8 @@ static int new_entry_addr(struct hostapd_data *hapd,
 	
 	if (hwaddr_aton(buf, addr))
 		
-	wpa_printf(MSG_ERROR, "%i" ,id);
-	
-	return -1;
-
-}
-	
-	
-	
+	wpa_printf(MSG_ERROR, "%s" , buf);
+		
 	return 0;
 
 }
