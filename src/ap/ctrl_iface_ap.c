@@ -24,7 +24,6 @@
 #include "ap_drv_ops.h"
 #include "mbo_ap.h"
 #include "taxonomy.h"
-#include "pmksa_cache_auth.h"
 
 
 static int hostapd_get_sta_tx_rx(struct hostapd_data *hapd,
