@@ -734,7 +734,7 @@ int hostapd_ap_pmksa_cache_add_external(struct hostapd_data *hapd,
 	pos++;
 
 	if (hexstr2bin(buf, pmkid, PMKID_LEN) < 0)
-		goto fail;
+		/*goto fail;*/
 	
 	wpa_printf(MSG_ERROR, "%u", pmkid);
 
