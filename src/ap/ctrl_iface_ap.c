@@ -723,10 +723,6 @@ int hostapd_ap_pmksa_cache_add_external(struct hostapd_data *hapd,
 	if (hwaddr_aton(buf, entry->spa))
 		goto fail;
 	
-	wpa_printf(MSG_ERROR, "%u", entry->spa);
-	
-	wpa_printf(MSG_ERROR, "%u", PMKID_LEN);
-	
 	pos = os_strchr(buf, ' ');
 	if (!pos)
 		goto fail;
@@ -735,13 +731,11 @@ int hostapd_ap_pmksa_cache_add_external(struct hostapd_data *hapd,
 	if (hexstr2bin(pos, entry->pmkid, PMKID_LEN) < 0)
 		goto fail;
 	
-	wpa_printf(MSG_ERROR, "%u", entry->pmkid);
-
 	pos = os_strchr(buf, ' ');
 	if (!pos)
 		goto fail;
 	pos++;
-	/*
+	
 	pos2 = os_strchr(pos, ' ');
 	if (!pos2)
 		goto fail;
