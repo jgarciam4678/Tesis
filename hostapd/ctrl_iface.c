@@ -2367,10 +2367,10 @@ int hostapd_ctrl_iface_mesh_pmksa_add(struct hostapd_data *hapd,
 	u8 addr[ETH_ALEN];
 		
 	if (hwaddr_aton(buf, addr))
-		return -1;
+		
 	printf("ok");
 	
-	return 0;
+	return -1;
 }
 
 static int hostapd_ctrl_iface_receive_process(struct hostapd_data *hapd,
