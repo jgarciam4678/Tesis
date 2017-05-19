@@ -696,84 +696,60 @@ int hostapd_ap_pmksa_cache_add_external(struct hostapd_data *hapd,
 				     char *buf)
 {
 	struct rsn_pmksa_cache_entry *entry;
-	char *pos, *pos2;
+	/*char *pos, *pos2;
 	int ret = -1;
 	struct os_reltime now;
-	int supli_add = 0, ID = 0, PMK = 0, exp=0, i;
-	/*struct wpa_ssid *ssid;*/
+	int reauth_time = 0, expiration = 0, i;
+
 	
-	/*
 	 * Entry format:
 	 * <network_id> <BSSID> <PMKID> <PMK> <reauth_time in seconds>
 	 * <expiration in seconds> <akmp> <opportunistic>
 	 * [FILS Cache Identifier]
-	*/	
+	 */
 
 	pos = os_strchr(buf, ' ');
 	if (!pos)
 		return -1;
 	pos++;
-	
-	if (hwaddr_aton(buf, entry->spa)) {
-		wpa_printf(MSG_ERROR, "CTRL: SET_NEIGHBOR: Bad BSSID");
-		return -1;
-	}
-	
-	
-/*
+
 	entry = os_zalloc(sizeof(*entry));
 	if (!entry)
 		return -1;
+
+	if (hwaddr_aton(buf, entry->spa))
+		goto fail;
 	
-	if (sscanf(pos, "%i %i %i, %i", &supli_add, &ID,
-			   &PMK, &exp) != 4)
-			goto fail;
-		for (i = 0; i < 4; i++) {
-			pos = os_strchr(pos, ' ');
-			if (!pos) {
-				if (i < 3)
-					goto fail;
-				break;
-			}
-			pos++;
-		}
-	
-	printf("%i", exp);
-	
+	wpa_printf(MSG_ERROR, "%s", spa);
 	/*
-	pos = os_strchr(pos, ' ');
+	pos = os_strchr(buf, ' ');
 	if (!pos)
-		wpa_printf(MSG_ERROR, "Espacio2 Fail");
 		goto fail;
 	pos++;
 
-	if (sscanf(pos, entry->pmkid, PMKID_LEN) < 0)
-		wpa_printf(MSG_ERROR, "PMKID_LEN Fail");
+	if (hexstr2bin(buf, entry->pmkid, PMKID_LEN) < 0)
 		goto fail;
 
-	pos = os_strchr(pos, ' ');
+	pos = os_strchr(buf, ' ');
 	if (!pos)
-		wpa_printf(MSG_ERROR, "Espacio3 Fail");
 		goto fail;
 	pos++;
 
 	pos2 = os_strchr(pos, ' ');
 	if (!pos2)
-		wpa_printf(MSG_ERROR, "Espacio4 Fail");
 		goto fail;
 	entry->pmk_len = (pos2 - pos) / 2;
 	if (entry->pmk_len < PMK_LEN || entry->pmk_len > PMK_LEN_MAX ||
 	    hexstr2bin(pos, entry->pmk, entry->pmk_len) < 0)
-		wpa_printf(MSG_ERROR, "PMK_LEN Fail");
 		goto fail;
-	
+
 	pos = os_strchr(pos, ' ');
 	if (!pos)
 		goto fail;
 	pos++;
-	/*
-	if (sscanf(pos, "%d %d %d", &supli_add->spa, &PMKID->pmkid,
-		   &PMK->pmk, &exp->expiration) != 4)
+
+	if (sscanf(pos, "%d %d %d %d", &reauth_time, &expiration,
+		   &entry->akmp, &entry->opportunistic) != 4)
 		goto fail;
 	for (i = 0; i < 4; i++) {
 		pos = os_strchr(pos, ' ');
@@ -784,24 +760,26 @@ int hostapd_ap_pmksa_cache_add_external(struct hostapd_data *hapd,
 		}
 		pos++;
 	}
-	
+	if (pos) {
+		if (hexstr2bin(pos, entry->fils_cache_id,
+			       FILS_CACHE_ID_LEN) < 0)
+			goto fail;
+		entry->fils_cache_id_set = 1;
+	}
 	os_get_reltime(&now);
 	entry->expiration = now.sec + expiration;
 	entry->reauth_time = now.sec + reauth_time;
 
 	entry->network_ctx = ssid;
-	
-	entry->expiration = now.sec + 20000;
-	wpa_printf(MSG_ERROR, "Expiration Fail");
-	*/
-	wpa_auth_pmksa_add_entry(hapd->wpa_auth, entry);
+
+	wpa_sm_pmksa_cache_add_entry(wpa_s->wpa, entry);
 	entry = NULL;
-	ret = 0;
+	ret = 0;*/
 fail:
 	os_free(entry);
 	return ret;
-}
 
+}
 
 #ifdef CONFIG_PMKSA_CACHE_EXTERNAL
 #ifdef CONFIG_MESH
