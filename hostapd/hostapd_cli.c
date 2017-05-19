@@ -1303,7 +1303,7 @@ static int helloworld(struct wpa_ctrl *ctrl, int argc, char *argv[])
 
 static int hostapd_new_entry(struct wpa_ctrl *ctrl, int argc, char *argv[])
 {
-	if (argc != 2) {
+	if (argc != 3) {
 		printf("Invalid MOBILE command: needs 3 arguments\n");
 		return -1;
 	}
