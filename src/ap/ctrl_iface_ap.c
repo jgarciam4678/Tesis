@@ -697,7 +697,7 @@ int hostapd_ap_pmksa_cache_add_external(struct hostapd_data *hapd,
 {
 	struct rsn_pmksa_cache_entry *entry;
 	char *pos, *pos2;
-	int ret = -1;
+	int ret = -1, expiration = 0;
 	struct os_reltime now;
 		
 	/*int reauth_time = 0, expiration = 0, i;
@@ -758,38 +758,20 @@ int hostapd_ap_pmksa_cache_add_external(struct hostapd_data *hapd,
 	    hexstr2bin(pos, entry->pmk, entry->pmk_len) < 0)
 		goto fail;
 	
-	wpa_printf(MSG_ERROR, "%s", buf);
+	wpa_printf(MSG_ERROR, "%s", pos);
 
 	pos = os_strchr(pos, ' ');
 	if (!pos)
 		goto fail;
 	pos++;
 	
-	wpa_printf(MSG_ERROR, "%s", buf);
-	/*
-	if (sscanf(pos, "%d %d %d %d", &reauth_time, &expiration,
-		   &entry->akmp, &entry->opportunistic) != 4)
-		goto fail;
-	for (i = 0; i < 4; i++) {
-		pos = os_strchr(pos, ' ');
-		if (!pos) {
-			if (i < 3)
-				goto fail;
-			break;
-		}
-		pos++;
-	}
-	if (pos) {
-		if (hexstr2bin(pos, entry->fils_cache_id,
-			       FILS_CACHE_ID_LEN) < 0)
-			goto fail;
-		entry->fils_cache_id_set = 1;
-	}
+	wpa_printf(MSG_ERROR, "%s", pos);
+	
+	if (sscanf(pos, "%d", &expiration) != 1)
+		return NULL;
+	
 	os_get_reltime(&now);
 	entry->expiration = now.sec + expiration;
-	entry->reauth_time = now.sec + reauth_time;
-
-	entry->network_ctx = ssid;
 
 	wpa_sm_pmksa_cache_add_entry(wpa_s->wpa, entry);
 	entry = NULL;*/
