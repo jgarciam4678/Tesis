@@ -1915,7 +1915,7 @@ static int hostapd_ctrl_iface_vendor(struct hostapd_data *hapd, char *cmd,
 	size_t data_len = 0;
 
 	/* cmd: <vendor id> <subcommand id> [<hex formatted data>] */
-	vendor_id = strtoul(cmd, &pos, 16);
+	vendor_id = strtoul(cmd, &pos, 16);wpa_printf(MSG_DEBUG, "CTRL_IFACE NEW_STA %s", buf);
 	if (!isblank((unsigned char) *pos))
 		return -EINVAL;
 
@@ -2060,7 +2060,7 @@ static int hostapd_ctrl_iface_track_sta_list(struct hostapd_data *hapd,
 	if (!iface->num_sta_seen)
 		return 0;
 
-	sta_track_expire(iface, 0);
+	sta_track_expire(iface, 0);wpa_printf(MSG_DEBUG, "CTRL_IFACE NEW_STA %s", buf);
 
 	pos = buf;
 	end = buf + buflen;
@@ -2365,16 +2365,33 @@ static int new_entry_addr(struct hostapd_data *hapd,
 					  const char *buf)
 {
 	u8 addr[ETH_ALEN];
+	int id=0; char dir
 	
-	wpa_printf(MSG_DEBUG, "CTRL_IFACE NEW_STA %s", buf);
-
+	pos = os_strchr(buf, ' ');
+	if (!pos)
+		return -1;
+	pos++;
+	
+	if (sscanf(pos, "%s %i", &dir, &id) != 2)
+			goto fail;
+		for (i = 0; i < 2; i++) {
+			pos = os_strchr(pos, ' ');
+			if (!pos) {
+				if (i < 1)
+					goto fail;
+				break;
+			}
+			pos++;
+		}
+	
+	wpa_printf(MSG_ERROR, "%i" ,id);
+	
 	if (hwaddr_aton(buf, addr))
 		return -1;
 
 	wpa_printf(MSG_ERROR, "%s" ,buf);
 	
-	wpa_printf(MSG_DEBUG, "Add new STA " MACSTR " based on ctrl_iface "
-		   "notification", MAC2STR(addr));
+	
 	
 	return 0;
 
