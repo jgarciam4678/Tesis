@@ -640,10 +640,6 @@ void hostapd_ctrl_iface_pmksa_flush(struct hostapd_data *hapd)
 	wpa_auth_pmksa_flush(hapd->wpa_auth);
 }
 
-
-#ifdef CONFIG_PMKSA_CACHE_EXTERNAL
-#ifdef CONFIG_MESH
-
 int hostapd_ctrl_iface_pmksa_list_mesh(struct hostapd_data *hapd,
 				       const u8 *addr, char *buf, size_t len)
 {
@@ -762,6 +758,9 @@ fail:
 	return ret;
 
 }
+
+#ifdef CONFIG_PMKSA_CACHE_EXTERNAL
+#ifdef CONFIG_MESH
 
 #endif /* CONFIG_MESH */
 #endif /* CONFIG_PMKSA_CACHE_EXTERNAL */
