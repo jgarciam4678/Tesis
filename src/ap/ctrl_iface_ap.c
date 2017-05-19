@@ -711,10 +711,12 @@ int hostapd_ap_pmksa_cache_add_external(struct hostapd_data *hapd,
 
 	wpa_printf(MSG_ERROR, "%s", buf);
 	
-	pos = os_strchr(buf, ' ');
+	/*pos = os_strchr(buf, ' ');
 	if (!pos)
 		return -1;
-	pos++;
+	pos++;*/
+	
+	pos = buf;
 	
 	wpa_printf(MSG_ERROR, "%s", pos);
 
