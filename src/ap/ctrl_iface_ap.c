@@ -731,7 +731,7 @@ int hostapd_ap_pmksa_cache_add_external(struct hostapd_data *hapd,
 	if (hexstr2bin(pos, entry->pmkid, PMKID_LEN) < 0)
 		goto fail;
 	
-	pos = os_strchr(buf, ' ');
+	pos = os_strchr(pos, ' ');
 	if (!pos)
 		goto fail;
 	pos++;
