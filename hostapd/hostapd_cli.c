@@ -1307,7 +1307,7 @@ static int hostapd_new_entry(struct wpa_ctrl *ctrl, int argc, char *argv[])
 		printf("Invalid MOBILE command: needs 1 arguments\n");
 		return -1;
 	}
-	return wpa_ctrl_command(ctrl, "MOBILE", 1, argc, argv);
+	return hostapd_cli_cmd(ctrl, "MOBILE", 1, argc, argv);
 }
 
 static int hostapd_cli_cmd_set_neighbor(struct wpa_ctrl *ctrl, int argc,
