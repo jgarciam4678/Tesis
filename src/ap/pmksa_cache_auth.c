@@ -225,7 +225,7 @@ static void pmksa_cache_link_entry(struct rsn_pmksa_cache *pmksa,
 	struct rsn_pmksa_cache_entry *pos, *prev;
 	int hash;
 	
-	printf("primer punto");
+	printf("primer punto\n");
 
 	/* Add the new entry; order by expiration time */
 	pos = pmksa->pmksa;
@@ -255,7 +255,7 @@ static void pmksa_cache_link_entry(struct rsn_pmksa_cache *pmksa,
 		   MAC2STR(entry->spa));
 	wpa_hexdump(MSG_DEBUG, "RSN: added PMKID", entry->pmkid, PMKID_LEN);
 	
-	printf("segundo punto");
+	printf("RSN: added PMKID\n");
 	
 }
 
