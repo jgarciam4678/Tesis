@@ -373,7 +373,7 @@ int pmksa_cache_auth_add_entry(struct rsn_pmksa_cache *pmksa,
 {
 	struct rsn_pmksa_cache_entry *pos;
 	
-	printf("A1 punto\n");
+	printf("add_entry A.1\n");
 
 	if (entry == NULL)
 		return -1;
@@ -393,7 +393,7 @@ int pmksa_cache_auth_add_entry(struct rsn_pmksa_cache *pmksa,
 	}
 
 	pmksa_cache_link_entry(pmksa, entry);
-	printf("A2 punto\n");
+	printf("add_entry A.2\n");
 
 	return 0;
 }
