@@ -4043,8 +4043,9 @@ int wpa_auth_pmksa_add_entry(struct wpa_authenticator *wpa_auth,
 {
 	int ret;
 
+	printf("A1.1 punto");
+	
 	if (!wpa_auth || !wpa_auth->pmksa)
-		printf("A1.1 punto");
 		return -1;
 
 	ret = pmksa_cache_auth_add_entry(wpa_auth->pmksa, entry);
