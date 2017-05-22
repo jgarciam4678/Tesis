@@ -1725,6 +1725,9 @@ int wpa_auth_sm_event(struct wpa_state_machine *sm, enum wpa_event event)
 		sm->DeauthenticationRequest = TRUE;
 		break;
 	case WPA_REAUTH:
+	
+			printf("Holamundo");
+	
 	case WPA_REAUTH_EAPOL:
 		if (!sm->started) {
 			/*
