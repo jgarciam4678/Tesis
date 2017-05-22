@@ -372,9 +372,10 @@ int pmksa_cache_auth_add_entry(struct rsn_pmksa_cache *pmksa,
 			       struct rsn_pmksa_cache_entry *entry)
 {
 	struct rsn_pmksa_cache_entry *pos;
+	
+	printf("A1 punto\n");
 
 	if (entry == NULL)
-		printf("A1 punto\n");
 		return -1;
 
 	/* Replace an old entry for the same STA (if found) with the new entry
@@ -389,7 +390,6 @@ int pmksa_cache_auth_add_entry(struct rsn_pmksa_cache *pmksa,
 			   "entry (for " MACSTR ") to make room for new one",
 			   MAC2STR(pmksa->pmksa->spa));
 		pmksa_cache_free_entry(pmksa, pmksa->pmksa);
-		printf("A2 punto\n");
 	}
 
 	pmksa_cache_link_entry(pmksa, entry);
@@ -593,7 +593,11 @@ static int das_attr_match(struct rsn_pmksa_cache_entry *entry,
 		    attr->user_name_len != entry->identity_len ||
 		    os_memcmp(attr->user_name, entry->identity,
 			      attr->user_name_len) != 0)
-			return 0;
+			return 0; * Returns: Pointer to PMKSA cache entry or %NULL if no match was found
+515
+ *
+516
+ * Use opportunistic key caching (OKC) to find a PMK for a supplicant.
 		match++;
 	}
 
