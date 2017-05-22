@@ -4043,7 +4043,7 @@ int wpa_auth_pmksa_add_entry(struct wpa_authenticator *wpa_auth,
 {
 	int ret;
 
-	printf("A1.1 punto");
+	printf("wpa_auth_pmksa_add_entry\n");
 	
 	if (!wpa_auth || !wpa_auth->pmksa)
 		return -1;
