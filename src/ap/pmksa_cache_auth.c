@@ -593,11 +593,7 @@ static int das_attr_match(struct rsn_pmksa_cache_entry *entry,
 		    attr->user_name_len != entry->identity_len ||
 		    os_memcmp(attr->user_name, entry->identity,
 			      attr->user_name_len) != 0)
-			return 0; * Returns: Pointer to PMKSA cache entry or %NULL if no match was found
-515
- *
-516
- * Use opportunistic key caching (OKC) to find a PMK for a supplicant.
+			return 0;
 		match++;
 	}
 
