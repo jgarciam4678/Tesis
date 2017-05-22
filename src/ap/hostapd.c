@@ -1991,7 +1991,7 @@ int hostapd_setup_interface(struct hostapd_iface *iface)
  * @conf: Pointer to per-interface configuration
  * @bss: Pointer to per-BSS configuration for this BSS
  * Returns: Pointer to allocated BSS data
- *
+ *hostapd_new_assoc_sta
  * This function is used to allocate per-BSS data structure. This data will be
  * freed after hostapd_cleanup() is called for it during interface
  * deinitialization.
@@ -2813,6 +2813,8 @@ int hostapd_remove_iface(struct hapd_interfaces *interfaces, char *buf)
 void hostapd_new_assoc_sta(struct hostapd_data *hapd, struct sta_info *sta,
 			   int reassoc)
 {
+	printf("Variable reassoc %d", reassoc);
+	
 	if (hapd->tkip_countermeasures) {
 		hostapd_drv_sta_deauth(hapd, sta->addr,
 				       WLAN_REASON_MICHAEL_MIC_FAILURE);
