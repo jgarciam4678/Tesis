@@ -374,6 +374,7 @@ int pmksa_cache_auth_add_entry(struct rsn_pmksa_cache *pmksa,
 	struct rsn_pmksa_cache_entry *pos;
 
 	if (entry == NULL)
+		printf("A1 punto\n");
 		return -1;
 
 	/* Replace an old entry for the same STA (if found) with the new entry
@@ -388,9 +389,11 @@ int pmksa_cache_auth_add_entry(struct rsn_pmksa_cache *pmksa,
 			   "entry (for " MACSTR ") to make room for new one",
 			   MAC2STR(pmksa->pmksa->spa));
 		pmksa_cache_free_entry(pmksa, pmksa->pmksa);
+		printf("A2 punto\n");
 	}
 
 	pmksa_cache_link_entry(pmksa, entry);
+	printf("A2 punto\n");
 
 	return 0;
 }
