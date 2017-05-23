@@ -701,6 +701,7 @@ int hostapd_ap_add_pmksa(struct hostapd_data *hapd,
 	int ret = -1, expiration = 0;
 	struct os_reltime now;
 	struct sta_info *sta;
+	u8 addr[ETH_ALEN];
 
 	/*
 	 * Entry format:
@@ -713,12 +714,43 @@ int hostapd_ap_add_pmksa(struct hostapd_data *hapd,
 	
 	pos = buf;
 	
+	printf("Inicio hostapd_ap_add_pmksa\n");
+	
 	entry = os_zalloc(sizeof(*entry));
 	if (!entry)
 		return -1;
-
+	
 	if (hwaddr_aton(pos, entry->spa))
 		goto fail;
+	
+	printf("SA -> *entry\n");
+	
+	/**/
+	
+	entry = os_zalloc(sizeof(*sta));
+	if (!entry)
+		return -1;
+	
+	wpa_printf(MSG_DEBUG, "CTRL_IFACE NEW_STA %s", txtaddr);
+
+	if (hwaddr_aton(pos, addr))
+		return -1;
+
+	sta = ap_get_sta(hapd, addr);
+	if (sta)
+		return 0;
+
+	wpa_printf(MSG_DEBUG, "Add new STA " MACSTR " based on ctrl_iface "
+		   "notification", MAC2STR(addr));
+	
+	sta = ap_sta_add(hapd, addr);
+	
+	if (sta == NULL)
+		return -1;
+		
+	printf("SA -> *sta\n");
+	
+	/**/
 	
 	pos = os_strchr(pos, ' ');
 	if (!pos)
