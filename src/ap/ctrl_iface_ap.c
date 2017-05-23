@@ -197,8 +197,8 @@ int hostapd_ctrl_iface_sta(struct hostapd_data *hapd, const char *txtaddr,
 	struct sta_info *sta;
 
 	printf("Station\n");
-	printf("%C\n", buf);
-	printf("%i\n", buflen);
+	printf("1. %C\n", buf);
+	printf("2. %d\n", buflen);
 	
 	if (hwaddr_aton(txtaddr, addr)) {
 		ret = os_snprintf(buf, buflen, "FAIL\n");
