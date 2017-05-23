@@ -700,6 +700,7 @@ int hostapd_ap_add_pmksa(struct hostapd_data *hapd,
 	char *pos, *pos2;
 	int ret = -1, expiration = 0;
 	struct os_reltime now;
+	struct sta_info *sta;
 
 	/*
 	 * Entry format:
