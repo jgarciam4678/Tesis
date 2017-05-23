@@ -723,6 +723,9 @@ int hostapd_ap_add_pmksa(struct hostapd_data *hapd,
 	if (hwaddr_aton(pos, entry->spa))
 		goto fail;
 	
+	if (hwaddr_aton(pos, sta->eapol_sm->pmksa->spa))
+		goto fail;
+	
 	printf("SA -> *entry\n");
 	printf("%s \n", buf);
 	
@@ -791,7 +794,7 @@ int hostapd_ap_add_pmksa(struct hostapd_data *hapd,
 	
 	wpa_auth_pmksa_add_entry(hapd->wpa_auth, entry);
 	
-	sta->eapol_sm->pmksa=*entry;
+	
 	
 	printf("Asignación de pmksa a *sta");
 	
