@@ -724,6 +724,7 @@ int hostapd_ap_add_pmksa(struct hostapd_data *hapd,
 		goto fail;
 	
 	printf("SA -> *entry\n");
+	printf("%c \n", buf);
 	
 	/**/
 	
