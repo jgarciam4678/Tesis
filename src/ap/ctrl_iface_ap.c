@@ -762,6 +762,8 @@ int hostapd_ap_add_pmksa(struct hostapd_data *hapd,
 	printf("station\n");
 	
 	wpa_auth_pmksa_add_entry(hapd->wpa_auth, entry);
+	
+	hostapd_new_assoc_sta(hapd, sta, 1);
 		
 	entry = NULL;
 	ret = 0;
