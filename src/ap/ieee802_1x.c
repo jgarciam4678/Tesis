@@ -1241,7 +1241,7 @@ void ieee802_1x_new_station(struct hostapd_data *hapd, struct sta_info *sta)
 		}
 		eapol_auth_step(sta->eapol_sm);
 		
-		printf("eapol_auth_step\n")
+		printf("eapol_auth_step\n");
 	}
 }
 
