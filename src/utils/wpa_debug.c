@@ -797,6 +797,8 @@ void hostapd_logger(void *ctx, const u8 *addr, unsigned int module, int level,
 	char *buf;
 	int buflen;
 	int len;
+	
+	printf("hostapd_logger");
 
 	va_start(ap, fmt);
 	buflen = vsnprintf(NULL, 0, fmt, ap) + 1;
