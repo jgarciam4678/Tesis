@@ -121,7 +121,7 @@ static int hostapd_ctrl_iface_new_sta(struct hostapd_data *hapd,
 	if (sta == NULL)
 		return -1;
 
-	hostapd_new_assoc_sta(hapd, sta, 0);
+	hostapd_new_assoc_sta(hapd, sta, 1);
 	return 0;
 }
 
