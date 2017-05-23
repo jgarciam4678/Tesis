@@ -1217,6 +1217,9 @@ void ieee802_1x_new_station(struct hostapd_data *hapd, struct sta_info *sta)
 			       "PMK from PMKSA cache - skip IEEE 802.1X/EAP");
 		/* Setup EAPOL state machines to already authenticated state
 		 * because of existing PMKSA information in the cache. */
+		
+		printf("PMKSA cache\n");
+		
 		sta->eapol_sm->keyRun = TRUE;
 		sta->eapol_sm->eap_if->eapKeyAvailable = TRUE;
 		sta->eapol_sm->auth_pae_state = AUTH_PAE_AUTHENTICATING;
@@ -1237,6 +1240,8 @@ void ieee802_1x_new_station(struct hostapd_data *hapd, struct sta_info *sta)
 			sta->eapol_sm->reAuthenticate = TRUE;
 		}
 		eapol_auth_step(sta->eapol_sm);
+		
+		printf("eapol_auth_step\n")
 	}
 }
 
