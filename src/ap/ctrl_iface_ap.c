@@ -197,9 +197,7 @@ int hostapd_ctrl_iface_sta(struct hostapd_data *hapd, const char *txtaddr,
 	struct sta_info *sta;
 
 	printf("Station\n");
-	printf("1. %C\n", buf);
-	printf("2. %d\n", buflen);
-	
+
 	if (hwaddr_aton(txtaddr, addr)) {
 		ret = os_snprintf(buf, buflen, "FAIL\n");
 		if (os_snprintf_error(buflen, ret))
@@ -754,8 +752,16 @@ int hostapd_ap_add_pmksa(struct hostapd_data *hapd,
 	
 	os_get_reltime(&now);
 	entry->expiration = now.sec + expiration;
+	
+	
+	sta = ap_get_sta(hapd, entry->spa);
+	if (sta == NULL)
+		return -1;	
 
+	printf("station\n");
+	
 	wpa_auth_pmksa_add_entry(hapd->wpa_auth, entry);
+		
 	entry = NULL;
 	ret = 0;
 fail:
