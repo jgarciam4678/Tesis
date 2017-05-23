@@ -2848,18 +2848,18 @@ void hostapd_new_assoc_sta(struct hostapd_data *hapd, struct sta_info *sta,
 
 	/* Start IEEE 802.1X authentication process for new stations */
 	
-	printf(ieee802_1x_new_station inicio \n);
+	printf("ieee802_1x_new_station inicio \n");
 	ieee802_1x_new_station(hapd, sta);
-	printf(ieee802_1x_new_station fin \n);
+	printf("ieee802_1x_new_station fin \n");
 		
 	if (reassoc) {
 		if (sta->auth_alg != WLAN_AUTH_FT &&
 		    !(sta->flags & (WLAN_STA_WPS | WLAN_STA_MAYBE_WPS)))
 			wpa_auth_sm_event(sta->wpa_sm, WPA_REAUTH);
 	} else
-		printf(wpa_auth_sta_associated inicio \n);
+		printf("wpa_auth_sta_associated inicio \n");
 		wpa_auth_sta_associated(hapd->wpa_auth, sta->wpa_sm);
-		printf(wpa_auth_sta_associated inicio \n);
+		printf("wpa_auth_sta_associated inicio \n");
 
 	if (hapd->iface->drv_flags & WPA_DRIVER_FLAGS_WIRED) {
 		if (eloop_cancel_timeout(ap_handle_timer, hapd, sta) > 0) {
