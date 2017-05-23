@@ -1108,6 +1108,8 @@ void ieee802_1x_new_station(struct hostapd_data *hapd, struct sta_info *sta)
 	if (!force_1x && !hapd->conf->ieee802_1x && !hapd->conf->osen) {
 		wpa_printf(MSG_DEBUG, "IEEE 802.1X: Ignore STA - "
 			   "802.1X not enabled or forced for WPS");
+		
+		printf("IEEE 802.1X: Ignore STA - 802.1X not enabled or forced for WPS\n");
 		/*
 		 * Clear any possible EAPOL authenticator state to support
 		 * reassociation change from WPS to PSK.
@@ -1131,6 +1133,9 @@ void ieee802_1x_new_station(struct hostapd_data *hapd, struct sta_info *sta)
 	if (sta->eapol_sm == NULL) {
 		hostapd_logger(hapd, sta->addr, HOSTAPD_MODULE_IEEE8021X,
 			       HOSTAPD_LEVEL_DEBUG, "start authentication");
+		
+		printf("start authentication\n");
+		
 		sta->eapol_sm = ieee802_1x_alloc_eapol_sm(hapd, sta);
 		if (sta->eapol_sm == NULL) {
 			hostapd_logger(hapd, sta->addr,
@@ -1203,6 +1208,9 @@ void ieee802_1x_new_station(struct hostapd_data *hapd, struct sta_info *sta)
 #endif /* CONFIG_FILS */
 
 	pmksa = wpa_auth_sta_get_pmksa(sta->wpa_sm);
+	
+	printf("pmksa\n");
+	
 	if (pmksa) {
 		hostapd_logger(hapd, sta->addr, HOSTAPD_MODULE_IEEE8021X,
 			       HOSTAPD_LEVEL_DEBUG,
