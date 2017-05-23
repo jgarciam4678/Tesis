@@ -731,7 +731,7 @@ int hostapd_ap_add_pmksa(struct hostapd_data *hapd,
 	if (!entry)
 		return -1;
 	
-	wpa_printf(MSG_DEBUG, "CTRL_IFACE NEW_STA %s", txtaddr);
+	wpa_printf(MSG_DEBUG, "CTRL_IFACE NEW_STA %s", pos);
 
 	if (hwaddr_aton(pos, addr))
 		return -1;
