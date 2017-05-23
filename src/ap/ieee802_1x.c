@@ -1237,6 +1237,7 @@ void ieee802_1x_new_station(struct hostapd_data *hapd, struct sta_info *sta)
 			 * re-authentication without having to wait for the
 			 * Supplicant to send EAPOL-Start.
 			 */
+			printf("reassoc\n");
 			sta->eapol_sm->reAuthenticate = TRUE;
 		}
 		eapol_auth_step(sta->eapol_sm);
