@@ -2813,7 +2813,7 @@ int hostapd_remove_iface(struct hapd_interfaces *interfaces, char *buf)
 void hostapd_new_assoc_sta(struct hostapd_data *hapd, struct sta_info *sta,
 			   int reassoc)
 {
-	printf("Variable reassoc %d/n", reassoc);
+	printf("Variable reassoc %d\n", reassoc);
 	
 	if (hapd->tkip_countermeasures) {
 		hostapd_drv_sta_deauth(hapd, sta->addr,
