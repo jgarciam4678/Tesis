@@ -786,11 +786,6 @@ int hostapd_ap_add_pmksa(struct hostapd_data *hapd,
 	os_get_reltime(&now);
 	entry->expiration = now.sec + expiration;
 	
-	
-	sta = ap_get_sta(hapd, entry->spa);
-	if (sta == NULL)
-		return -1;	
-
 	printf("station\n");
 	
 	wpa_auth_pmksa_add_entry(hapd->wpa_auth, entry);
