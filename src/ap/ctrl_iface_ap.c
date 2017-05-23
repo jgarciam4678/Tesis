@@ -791,6 +791,10 @@ int hostapd_ap_add_pmksa(struct hostapd_data *hapd,
 	
 	wpa_auth_pmksa_add_entry(hapd->wpa_auth, entry);
 	
+	sta->eapol_sm->pmksa=*entry;
+	
+	printf("Asignación de pmksa a *sta");
+	
 	hostapd_new_assoc_sta(hapd, sta, 1);
 		
 	entry = NULL;
