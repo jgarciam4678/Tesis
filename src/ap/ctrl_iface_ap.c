@@ -729,7 +729,7 @@ int hostapd_ap_add_pmksa(struct hostapd_data *hapd,
 	printf("SA -> *entry\n");
 	printf("%s \n", buf);
 	
-	/**/
+	/*
 	
 	entry = os_zalloc(sizeof(*sta));
 	if (!entry)
@@ -754,7 +754,7 @@ int hostapd_ap_add_pmksa(struct hostapd_data *hapd,
 		
 	printf("SA -> *sta\n");
 	
-	/**/
+	*/
 	
 	pos = os_strchr(pos, ' ');
 	if (!pos)
@@ -795,11 +795,11 @@ int hostapd_ap_add_pmksa(struct hostapd_data *hapd,
 	wpa_auth_pmksa_add_entry(hapd->wpa_auth, entry);
 	
 	
-	
+	/*
 	printf("Asignación de pmksa a *sta");
 	
 	hostapd_new_assoc_sta(hapd, sta, 1);
-		
+	*/	
 	entry = NULL;
 	ret = 0;
 fail:
