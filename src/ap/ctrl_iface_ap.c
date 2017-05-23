@@ -196,7 +196,8 @@ int hostapd_ctrl_iface_sta(struct hostapd_data *hapd, const char *txtaddr,
 	const char *pos;
 	struct sta_info *sta;
 
-	printf("%c", buf);
+	printf("Station");
+	printf("%C", buf);
 	printf("%i", buflen);
 	
 	if (hwaddr_aton(txtaddr, addr)) {
