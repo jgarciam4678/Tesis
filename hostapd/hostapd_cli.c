@@ -7,7 +7,8 @@
  */
 
 #include "includes.h"
-#include <dirent.h>
+/*#include <dirent.h>*/
+#include "dirent.h"
 
 #include "common/wpa_ctrl.h"
 #include "common/ieee802_11_defs.h"
