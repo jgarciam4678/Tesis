@@ -354,9 +354,9 @@ pmksa_cache_auth_create_entry(const u8 *pmk, size_t pmk_len, const u8 *pmkid,
 	entry->akmp = akmp;
 	os_memcpy(entry->spa, spa, ETH_ALEN);
 	
-	printf("fin create entry, inicio pmksa_cache_from_eapol_data");
+	printf("fin create entry, inicio pmksa_cache_from_eapol_data\n");
 	pmksa_cache_from_eapol_data(entry, eapol);
-	printf("fin pmksa_cache_from_eapol_data");
+	printf("fin pmksa_cache_from_eapol_data\n");
 	
 	return entry;
 }
