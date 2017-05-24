@@ -662,7 +662,9 @@ void * hostapd_ctrl_iface_pmksa_create_entry(const u8 *aa, char *cmd)
 	 * Entry format:
 	 * <BSSID> <PMKID> <PMK> <expiration in seconds>
 	 */
-
+	
+	printf("%s\n",cmd);
+	
 	if (hwaddr_aton(cmd, spa))
 		return NULL;
 
@@ -670,6 +672,8 @@ void * hostapd_ctrl_iface_pmksa_create_entry(const u8 *aa, char *cmd)
 	if (!pos)
 		return NULL;
 	pos++;
+	       
+	printf("%s\n",pos);
 
 	if (hexstr2bin(pos, pmkid, PMKID_LEN) < 0)
 		return NULL;
@@ -690,12 +694,6 @@ void * hostapd_ctrl_iface_pmksa_create_entry(const u8 *aa, char *cmd)
 	if (sscanf(pos, "%d", &expiration) != 1)
 		return NULL;
 
-	printf("%u\n",aa);
-	printf("%u\n",spa);
-	printf("%u\n",pmk);
-	printf("%u\n",pmkid);
-	printf("%d\n",expiration);
-	
 	return wpa_auth_pmksa_create_entry(aa, spa, pmk, pmkid, expiration);
 }
 
