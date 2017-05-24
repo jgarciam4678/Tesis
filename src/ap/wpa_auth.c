@@ -706,7 +706,7 @@ void wpa_auth_sta_deinit(struct wpa_state_machine *sm)
 	sm->pending_1_of_4_timeout = 0;
 	eloop_cancel_timeout(wpa_sm_call_step, sm, NULL);
 	eloop_cancel_timeout(wpa_rekey_ptk, sm->wpa_auth, sm);
-#ifdef CONFIG_IEEE80211R_AP
+/*#ifdef CONFIG_IEEE80211R_AP
 	wpa_ft_sta_deinit(sm);
 #endif /* CONFIG_IEEE80211R_AP */
 	if (sm->in_step_loop) {
