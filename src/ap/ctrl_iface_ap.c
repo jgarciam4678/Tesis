@@ -723,9 +723,6 @@ int hostapd_ap_add_pmksa(struct hostapd_data *hapd,
 	if (hwaddr_aton(pos, entry->spa))
 		goto fail;
 	
-	if (hwaddr_aton(pos, sta->wpa_sm->pmksa->spa))
-		goto fail;
-	
 	printf("SA -> *entry\n");
 	printf("%s \n", buf);
 	
