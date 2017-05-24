@@ -4032,6 +4032,8 @@ wpa_auth_pmksa_create_entry(const u8 *aa, const u8 *spa, const u8 *pmk,
 	if (!entry)
 		return NULL;
 
+	printf("RSN struct creado");
+	
 	os_get_reltime(&now);
 	entry->expiration = now.sec + expiration;
 	return entry;
